@@ -1,1 +1,1 @@
-antora:3.0.0-beta.3
+antora:2.3.4
