@@ -8,7 +8,10 @@ FROM "${BASE_IMAGE}"
 ADD "https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz" /tmp/gobgp.tar.gz
 
 RUN tar xzf /tmp/gobgp.tar.gz -C /usr/bin && \
-    rm -rf /tmp/gobgp.tar.gz
+    rm -rf /tmp/gobgp.tar.gz && \
+    adduser -S gobgp
+
+USER gobgp
 
 ENTRYPOINT [ "/usr/bin/gobgpd" ]
 

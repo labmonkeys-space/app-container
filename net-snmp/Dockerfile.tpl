@@ -6,10 +6,14 @@
 FROM "${BASE_IMAGE}"
 
 RUN apk --no-cache add net-snmp="${NETSNMP_VERSION}" && \
-    mkdir -p /etc/snmp/conf.d
+    mkdir -p /etc/snmp/conf.d && \
+    adduser -S snmp && \
+    chown -R snmp:root /etc/snmp /var/lib/net-snmp
 
-COPY config/snmpd.conf /etc/snmp/snmpd.conf
-COPY config/conf.d/* /etc/snmp/conf.d/
+COPY --chown=snmp:root config/snmpd.conf /etc/snmp/snmpd.conf
+COPY --chown=snmp:root config/conf.d/* /etc/snmp/conf.d/
+
+USER snmp
 
 ENTRYPOINT [ "/usr/sbin/snmpd" ]
 
