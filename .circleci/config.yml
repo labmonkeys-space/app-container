@@ -31,7 +31,8 @@ workflows:
           context: "Publishing"
       - gobgp:
           context: "Publishing"
-
+      - net-snmp:
+          context: "Publishing"
 jobs:
   antora:
     executor: build-executor
@@ -44,3 +45,9 @@ jobs:
     steps:
       - make-image:
           workdir: "./gobgp"
+
+  net-snmp:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./net-snmp"
