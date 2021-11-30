@@ -14,6 +14,10 @@ ENTRYPOINT [ "/usr/bin/gobgpd" ]
 
 CMD [ "--help" ]
 
+### Runtime information and not relevant at build time
+
+EXPOSE 179/tcp
+
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
