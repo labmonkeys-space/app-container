@@ -29,9 +29,18 @@ workflows:
     jobs:
       - antora:
           context: "Publishing"
+      - gobgp:
+          context: "Publishing"
+
 jobs:
   antora:
     executor: build-executor
     steps:
       - make-image:
           workdir: "./antora"
+#
+  gobgp:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./gobgp"
