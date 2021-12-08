@@ -72,15 +72,16 @@ shellcheck: deps
 	@find . -type f -name '*.sh' | xargs shellcheck --external-sources -e SC2034,SC2155
 	@echo -e "\033[0;32mDONE\033[0m"
 
-hadolint: deps
-	@echo -n "Run Hadolint on all Dockerfile templates: "
-	@find . -type f -name 'Dockerfile.tpl' | xargs hadolint --ignore=DL3059
-	@echo -e "\033[0;32mDONE\033[0m"
-
-Dockerfile: shellcheck hadolint info
+Dockerfile: shellcheck info
 	@echo -n "Generating Dockerfile: "
 	@source ./version-lock.sh && envsubst < "Dockerfile.tpl" > "Dockerfile"
 	@echo -e "\033[0;32mDONE\033[0m"
+
+hadolint: Dockerfile
+	@echo -n "Run Hadolint on all Dockerfile templates: "
+	@find . -type f -name 'Dockerfile' | xargs hadolint --ignore=DL3059
+	@echo -e "\033[0;32mDONE\033[0m"
+
 
 builder-instance: info
 	@if ! docker context inspect "$(BUILDER_INSTANCE)"; then docker context create "$(BUILDER_INSTANCE)"; fi;
