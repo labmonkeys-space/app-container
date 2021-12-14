@@ -10,8 +10,7 @@ RUN apk --no-cache add bash="${BASH_VERSION}" \
                        git="${GIT_VERSION}" \
                        openssh-client="${OPENSSH_CLIENT_VERSION}" && \
     yarn add "https://gitlab.com/antora/xref-validator/-/archive/${ANTORA_XREF_VALIDATOR}/xref-validator-${ANTORA_XREF_VALIDATOR}.tar.gz" && \
-    yarn add "antora-lunr@${ANTORA_LUNR}" && \
-    yarn add "antora-site-generator-lunr@${ANTORA_SITE_GENERATOR}"
+    yarn add https://gitlab.com/antora/antora-lunr-extension
 
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
