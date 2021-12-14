@@ -12,7 +12,9 @@ RUN apk --no-cache add bash="${BASH_VERSION}" \
     # hadolint ignore=DL3016
     npm i -g gitlab:antora/xref-validator && \
     # hadolint ignore=DL3016
-    npm install -g https://gitlab.com/antora/antora-lunr-extension
+    npm i -g antora-lunr && \
+    # hadolint ignore=DL3016
+    npm i -g antora-site-generator-lunr
 
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
