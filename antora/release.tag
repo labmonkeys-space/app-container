@@ -1,1 +1,1 @@
-antora:3.0.0-rc.2
+antora:3.0.0-rc.3
