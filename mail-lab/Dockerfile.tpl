@@ -5,8 +5,10 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-# Set noninteractive mode for apt-get
-ENV DEBIAN_FRONTEND noninteractive
+# Change default shell for RUN from Dash to Bash
+SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Set some defaults for Postfix mail server
 ENV MAILDOMAIN="example.org"
