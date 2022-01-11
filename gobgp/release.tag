@@ -1,1 +1,1 @@
-gobgp:3.0.0-rc3
+gobgp:3.0.0-rc4
