@@ -9,3 +9,5 @@ export MAKE_VERSION="4.3-r0"
 export GIT_VERSION="2.32.0-r0"
 export OPENSSH_CLIENT_VERSION="8.6_p1-r3"
 export ANTORA_XREF_VALIDATOR="v1.0.0-alpha.14"
+export LUNR_EXTENSION_VERSION="1.0.0-alpha.3"
+
