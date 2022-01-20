@@ -42,6 +42,8 @@ workflows:
           context: "Publishing"
       - gobetween:
           context: "Publishing"
+      - hzn-init-helper:
+          context: "Publishing"
 jobs:
   antora:
     executor: build-executor
@@ -72,3 +74,9 @@ jobs:
     steps:
       - make-image:
           workdir: "./gobetween"
+
+  hzn-init-helper:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./hzn-init-helper"
