@@ -5,21 +5,22 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-ADD "https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz" /tmp/gobgp.tar.gz
+ADD "https://github.com/yyyar/gobetween/releases/download/${GOBETWEEN_VERSION}/gobetween_${GOBETWEEN_VERSION}_linux_amd64.tar.gz" /tmp/gobetween.tar.gz
 
-RUN tar xzf /tmp/gobgp.tar.gz -C /usr/bin && \
-    rm -rf /tmp/gobgp.tar.gz && \
-    adduser -S gobgp
+RUN mkdir /etc/gobetween && \
+    tar xzf /tmp/gobetween.tar.gz -C /tmp && \
+    mv /tmp/gobetween /usr/bin && \
+    mv /tmp/config/* /etc/gobetween && \
+    rm -rf /tmp/* && \
+    adduser -S gobetween
 
-USER gobgp
+USER gobetween
 
-ENTRYPOINT [ "/usr/bin/gobgpd" ]
+ENTRYPOINT [ "/usr/bin/gobetween" ]
 
 CMD [ "--help" ]
 
 ### Runtime information and not relevant at build time
-
-EXPOSE 179/tcp
 
 LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
