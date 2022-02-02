@@ -81,6 +81,11 @@ initConfigWithDatabase() {
   fi
 }
 
+ensureFilePermissions() {
+  echo "Set permissions for opennms user with UID/GID 10001"
+  chown -R 10001:10001 /opt/opennms
+}
+
 testConfigs() {
   echo "Validate configuration."
   "${JAVA_HOME}/bin/java" -Dopennms.manager.class="org.opennms.netmgt.config.tester.ConfigTester" -Dopennms.home="${OPENNMS_HOME}" -Dlog4j.configurationFile="${OPENNMS_CONFIG}/log4j2-tools.xml" -jar "${OPENNMS_HOME}/lib/opennms_bootstrap.jar" -a || exit "${E_INIT_CONFIG}"
@@ -90,6 +95,7 @@ echo "### Start initializing or update OpenNMS configuration"
 initOnmsEtc
 applyConfdTemplates
 applyOverlayConfig
+ensureFilePermissions
 if [[ "${INIT_CFG_DEBUG}" == "true" ]]; then
   echo "Debug config diff after applying the custom configuration"
   "${OPENNMS_HOME}/bin/config-diff.sh" -r "${OPENNMS_CONFIG}" -p "${OPENNMS_CONFIG_PRISTINE}"
