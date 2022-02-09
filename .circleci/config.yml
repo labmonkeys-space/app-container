@@ -34,6 +34,8 @@ workflows:
     jobs:
       - antora:
           context: "Publishing"
+      - cerebro:
+          context: "Publishing"
       - gobgp:
           context: "Publishing"
       - lldpd:
@@ -50,6 +52,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./antora"
+
+  cerebro:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./cerebro"
 
   gobgp:
     executor: build-executor

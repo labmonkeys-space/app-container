@@ -15,4 +15,4 @@ OPENNMS_JAVA_OPTS="--add-modules=java.base,java.compiler,java.datatransfer,java.
   -Djava.io.tmpdir=${OPENNMS_HOME}/data/tmp
   -Djava.locale.providers=CLDR,COMPAT
   -XX:+StartAttachListener"
-  exec "${JAVA_HOME}/bin/java" "${OPENNMS_JAVA_OPTS}" "${JAVA_OPTS}" -jar "${OPENNMS_HOME}/lib/opennms_bootstrap.jar" start
+  exec "${JAVA_HOME}/bin/java ${OPENNMS_JAVA_OPTS} ${JAVA_OPTS} -jar ${OPENNMS_HOME}/lib/opennms_bootstrap.jar start"
