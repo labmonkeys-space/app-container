@@ -38,7 +38,10 @@ EXPOSE 9000/tcp
 # Persistence for configs and database
 VOLUME [ "${CEREBRO_HOME}/data", "${CEREBRO_HOME}/conf" ]
 
-LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
+LABEL org.opencontainers.image.created="${DATE}" \
+      org.opencontainers.image.description="Cerebro - A web admin tool to manage ElasticSearch" \
+      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/cerebro/README.md" \
+      org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
