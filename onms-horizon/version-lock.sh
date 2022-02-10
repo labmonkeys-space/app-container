@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -u -o pipefail
 
-export VCS_SOURCE="$(git remote get-url --push origin)"
-export VCS_REVISION="$(git describe --always)"
+VCS_SOURCE="$(git remote get-url --push origin)"
+VCS_REVISION="$(git describe --always)"
+DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+export VCS_SOURCE
+export VCS_REVISION
+export DATE
 export BASE_IMAGE="quay.io/labmonkeys/openjdk:jdk-11.0.14.b106"
 export CONFD_VERSION="0.16.0"
 export R_VERSION="4.1.2-1ubuntu1"

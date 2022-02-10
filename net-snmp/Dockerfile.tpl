@@ -23,7 +23,8 @@ CMD [ "-f", "-Le", "-LS0-6d", "-c", "/etc/snmp/snmpd.conf" ]
 
 EXPOSE 161/udp
 
-LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
+LABEL org.opencontainers.image.created="${DATE}" \
+      org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
