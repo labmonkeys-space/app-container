@@ -45,5 +45,4 @@ LABEL org.opencontainers.image.created="${DATE}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
       org.opencontainers.image.licenses="MIT" \
-      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/cerebro/README.md" \
-      io.artifacthub.package.maintainers="[{"name":"Ronny Trommer","email":"ronny@no42.org"}]"
+      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/cerebro/README.md"
