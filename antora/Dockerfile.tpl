@@ -12,9 +12,10 @@ RUN apk --no-cache add bash="${BASH_VERSION}" \
     yarn global add --ignore-optional --silent "https://gitlab.com/antora/xref-validator/-/archive/${ANTORA_XREF_VALIDATOR}/xref-validator-${ANTORA_XREF_VALIDATOR}.tar.gz" && \
     yarn global add --ignore-optional --silent "@antora/lunr-extension@${LUNR_EXTENSION_VERSION}"
 
-LABEL org.opencontainers.image.source="${VCS_SOURCE}" \
+LABEL org.opencontainers.image.created="${DATE}" \
+      org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
-      org.opencontainers.image.licenses="MIT"
-
+      org.opencontainers.image.licenses="MIT" \
+      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/antora/README.md"
