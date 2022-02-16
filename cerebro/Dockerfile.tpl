@@ -23,7 +23,6 @@ RUN apt-get update && apt-get --no-install-recommends -y install curl && \
                              ${CEREBRO_HOME}/logs \
                              ${CEREBRO_HOME}/data && \
     rm -rf /opt/cerebro.tar.gz && \
-    apt-get autoremove && apt-get autoclean && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${CEREBRO_HOME}
