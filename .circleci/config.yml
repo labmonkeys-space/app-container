@@ -40,6 +40,10 @@ workflows:
           context: "Publishing"
       - lldpd:
           context: "Publishing"
+      - maven-11-jdk:
+          context: "Publishing"
+      - maven-17-jdk:
+          context: "Publishing"
       - net-snmp:
           context: "Publishing"
       - gobetween:
@@ -70,6 +74,18 @@ jobs:
     steps:
       - make-image:
           workdir: "./lldpd"
+
+  maven-11-jdk:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./maven-11-jdk"
+
+  maven-17-jdk:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./maven-17-jdk"
 
   net-snmp:
     executor: build-executor
