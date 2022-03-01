@@ -3,7 +3,7 @@ set -u -o pipefail
 
 VCS_SOURCE="$(git remote get-url --push origin)"
 VCS_REVISION="$(git describe --always)"
-DATE="$(date --iso-8601=seconds)"
+DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
