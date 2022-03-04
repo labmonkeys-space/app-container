@@ -16,6 +16,7 @@ WORKDIR /src
 RUN git clone https://github.com/webdevotion/featmap
 
 WORKDIR /src/featmap/webapp
+RUN npx browserslist@latest --update-db
 RUN npm install --legacy-peer-deps
 RUN npm run build
 

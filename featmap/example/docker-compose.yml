@@ -1,0 +1,23 @@
+---
+version: "3"
+services:
+  postgres:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  featmap:
+    image: quay.io/labmonkeys/featmap:2.1.0
+    restart: always
+    ports:
+      - '5000:5000/tcp'
+    volumes:
+      - ./conf.json.example:/opt/featmap/conf.json
+
