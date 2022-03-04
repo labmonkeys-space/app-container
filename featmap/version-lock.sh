@@ -7,6 +7,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.15.0.b74"
-export BUILDER_BASE_IMAGE="golang:alpine"
+export BASE_IMAGE="quay.io/labmonkeys/ubuntu:jammy-20220130.b140"
 export FEATMAP_VERSION="2.1.0"

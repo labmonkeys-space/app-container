@@ -14,7 +14,7 @@ services:
       timeout: 5s
       retries: 5
   featmap:
-    image: quay.io/labmonkeys/featmap:2.1.0
+    image: quay.io/labmonkeys/featmap:2.1.0.b227
     restart: always
     ports:
       - '5000:5000/tcp'

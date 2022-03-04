@@ -36,6 +36,8 @@ workflows:
           context: "Publishing"
       - cerebro:
           context: "Publishing"
+      - featmap:
+          context: "Publishing"
       - gobgp:
           context: "Publishing"
       - lldpd:
@@ -62,6 +64,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./cerebro"
+
+  featmap:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./featmap"
 
   gobgp:
     executor: build-executor
