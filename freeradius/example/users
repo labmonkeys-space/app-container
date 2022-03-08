@@ -1,0 +1,5 @@
+user1    Cleartext-Password := "u5er1p455"
+         OpenNMS-User-Roles = "ROLE_USER, ROLE_ADMIN"
+user2    Cleartext-Password := "u5er2p455"
+         OpenNMS-User-Roles = "ROLE_USER"
+user3    Cleartext-Password := "u5er3p455"

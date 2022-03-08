@@ -1,0 +1,4 @@
+VENDOR OpenNMS 5813
+  BEGIN-VENDOR    OpenNMS
+  ATTRIBUTE       OpenNMS-User-Roles    1          string
+END-VENDOR OpenNMS

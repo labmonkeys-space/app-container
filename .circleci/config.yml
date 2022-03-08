@@ -38,6 +38,8 @@ workflows:
           context: "Publishing"
       - featmap:
           context: "Publishing"
+      - freeradius:
+          context: "Publishing"
       - gobgp:
           context: "Publishing"
       - lldpd:
@@ -70,6 +72,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./featmap"
+
+  freeradius:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./freeradius"
 
   gobgp:
     executor: build-executor
