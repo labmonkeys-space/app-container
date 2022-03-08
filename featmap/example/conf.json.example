@@ -2,7 +2,7 @@
   "appSiteURL": "http://localhost:5000",
   "dbConnectionString": "postgresql://postgres:postgres@postgres:5432/postgres?sslmode=disable",
   "jwtSecret": "ChangeMeForProduction",
-  "port": "5000",
+  "port": "5001",
   "emailFrom": "",
   "smtpServer": "",
   "smtpPort": "587",

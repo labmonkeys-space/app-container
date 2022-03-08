@@ -2,7 +2,7 @@
 version: "3"
 services:
   postgres:
-    image: postgres:11-alpine
+    image: postgres:14-alpine
     restart: always
     environment:
       POSTGRES_DB: postgres
@@ -14,10 +14,10 @@ services:
       timeout: 5s
       retries: 5
   featmap:
-    image: quay.io/labmonkeys/featmap:2.1.0.b227
+    image: quay.io/labmonkeys/featmap:2.1.0.b240
     restart: always
     ports:
-      - '5000:5000/tcp'
+      - '5001:5001/tcp'
     volumes:
       - ./conf.json.example:/opt/featmap/conf.json
 
