@@ -19,8 +19,10 @@ CMD [ "--help" ]
 EXPOSE 1812/udp 18120/tcp 1813/udp
 
 LABEL org.opencontainers.image.created="${DATE}" \
+      org.opencontainers.image.description="Fast, feature-rich, modular, and scalable." \
       org.opencontainers.image.source="${VCS_SOURCE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
-      org.opencontainers.image.licenses="MIT"
+      org.opencontainers.image.licenses="MIT" \
+      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/freeradius/README.md"
