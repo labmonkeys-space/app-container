@@ -40,7 +40,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends tini && \
     chgrp -R 0 /opt/hzn-stream && \
     chmod -R g=u /opt/hzn-stream && \
     rm -rf /tmp/*.tar.gz && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    echo "karaf = karaf,_g_:admingroup" >> /opt/hzn-stream/etc/users.properties && \
+    echo "_g_\:admingroup = group,admin,manager,viewer,systembundles,ssh" >> /opt/hzn-stream/etc/users.properties
 
 WORKDIR /opt/hzn-stream
 
