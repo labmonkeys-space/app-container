@@ -26,7 +26,10 @@ WORKDIR /opt/karaf
 
 USER 10001
 
-ENTRYPOINT ["/tini", "--"]
+# Tini kills the child process group , so that every process in the group gets the signal.
+# This corresponds more closely to what happens when you do ctrl-C etc.
+# In a terminal: The signal is sent to the foreground process group.
+ENTRYPOINT ["/usr/bin/tini", "-g" ,"--"]
 
 CMD ["/opt/karaf/bin/karaf", "run"]
 
