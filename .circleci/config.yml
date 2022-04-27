@@ -40,6 +40,8 @@ workflows:
           context: "Publishing"
       - freeradius:
           context: "Publishing"
+      - gobetween:
+          context: "Publishing"
       - gobgp:
           context: "Publishing"
       - horizon-stream:
@@ -54,10 +56,11 @@ workflows:
           context: "Publishing"
       - net-snmp:
           context: "Publishing"
-      - gobetween:
-          context: "Publishing"
       - onms-horizon:
           context: "Publishing"
+      - pleroma:
+          context: "Publishing"
+
 jobs:
   antora:
     executor: build-executor
@@ -82,6 +85,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./freeradius"
+
+  gobetween:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./gobetween"
 
   gobgp:
     executor: build-executor
@@ -125,14 +134,14 @@ jobs:
       - make-image:
           workdir: "./net-snmp"
 
-  gobetween:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./gobetween"
-
   onms-horizon:
     executor: build-executor
     steps:
       - make-image:
           workdir: "./onms-horizon"
+
+  pleroma:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./pleroma"
