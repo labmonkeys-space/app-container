@@ -7,6 +7,6 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BUILD_BASE_IMAGE="quay.io/labmonkeys/maven:jdk11.0.14-3.6.3.b284"
-export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.14.b135"
+export BUILD_BASE_IMAGE="quay.io/labmonkeys/maven:jdk11.0.15-3.6.3.b440"
+export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.15.b139"
 export GIT_COMMIT="94f575ea"
