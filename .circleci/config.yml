@@ -4,7 +4,7 @@ version: 2.1
 executors:
   build-executor:
     docker:
-      - image: quay.io/labmonkeys/cimg-base:2022.03-20.04.b43
+      - image: quay.io/labmonkeys/cimg-base:2022.06-22.04.b45
 
 commands:
   make-image:

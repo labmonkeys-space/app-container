@@ -14,15 +14,18 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV MAILDOMAIN="example.org"
 ENV MESSAGE_SIZE_LIMIT="52428800"
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
-    apt-get update && \
-    apt-get -y install --no-install-recommends inetutils-syslogd="${INETUTILS_SYSLOGD_VERSION}" \
+ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp/
+
+# hadolint ignore=DL3008
+RUN apt-get update && \
+    apt-get -y install --no-install-recommends xz-utils \
+                                               inetutils-syslogd="${INETUTILS_SYSLOGD_VERSION}" \
                                                postfix="${POSTFIX_VERSION}" \
                                                dovecot-imapd="${DOVECOT_IMAPD_VERSION}" \
                                                whois="${WHOIS_VERSION}" && \
+    tar -xf /tmp/s6-overlay-x86_64.tar.xz -C / && \
     rm -rf /var/lib/apt/lists/* && \
-    rm /tmp/*.tar.gz
+    rm /tmp/*.tar.xz
 
 COPY container-fs/etc/s6/services /etc/s6/services
 COPY container-fs/etc/cont-init.d /etc/cont-init.d

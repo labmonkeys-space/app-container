@@ -1,1 +1,1 @@
-pleroma:2.4.2
+pleroma:2.4.3
