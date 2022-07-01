@@ -4,6 +4,9 @@
 
 FROM "${BASE_IMAGE}"
 
+RUN groupadd --gid 10001 diaguser && \
+    adduser --uid 10001 --gid 10001 --home /home/diaguser diaguser --system
+
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates="${CA_CERT_VERSION}" \
     netcat \
@@ -11,6 +14,10 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     vim \
     htop && \
     rm -rf /var/lib/apt/lists/*
+
+USER 10001
+
+CMD [ "/usr/bin/bash" ]
 
 ### Runtime information and not relevant at build time
 
