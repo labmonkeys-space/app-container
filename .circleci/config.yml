@@ -36,6 +36,8 @@ workflows:
           context: "Publishing"
       - cerebro:
           context: "Publishing"
+      - diag:
+          context: "Publishing"
       - featmap:
           context: "Publishing"
       - freeradius:
@@ -73,6 +75,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./cerebro"
+
+  diag:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./diag"
 
   featmap:
     executor: build-executor
