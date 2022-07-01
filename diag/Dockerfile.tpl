@@ -9,10 +9,11 @@ RUN groupadd --gid 10001 diaguser && \
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates="${CA_CERT_VERSION}" \
+    htop \
+    libcap2-bin \
     netcat \
     sysstat \
-    vim \
-    htop && \
+    vim && \
     rm -rf /var/lib/apt/lists/*
 
 USER 10001
