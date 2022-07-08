@@ -8,4 +8,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.0.b182"
-export GIT_COMMIT="6d74896557d8c193a9f19bc6845a47e9d0f77db2"
+export GIT_COMMIT="6721d9941eb2674aef14249e2fc6dcecbfe46163"

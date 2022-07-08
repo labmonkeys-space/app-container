@@ -10,6 +10,7 @@ ENV GOPATH=/opt/go
 # hadolint ignore=DL3018, DL3003
 RUN go get -u github.com/ipchama/dupligator
 RUN cd /opt/go/src/github.com/ipchama/dupligator && \
+    git checkout ${GIT_COMMIT} && \
     go build -o bin/dupligator . && \
     mv bin/dupligator /usr/bin/dupligator
 
