@@ -28,7 +28,9 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
 
 USER 10001
 
-CMD [ "/usr/bin/bash" ]
+ENTRYPOINT [ "/bin/nc.openbsd" ]
+
+CMD ["-h"]
 
 ### Runtime information and not relevant at build time
 
