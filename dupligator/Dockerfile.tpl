@@ -3,21 +3,24 @@
 ###
 
 # hadolint ignore=DL3006
-FROM "golang:1.15-buster" as builder
-
-ENV GOPATH=/opt/go
+FROM "golang:1.18-alpine3.16" as builder
 
 # hadolint ignore=DL3018, DL3003
-RUN go get -u github.com/ipchama/dupligator
-RUN cd /opt/go/src/github.com/ipchama/dupligator && \
-    git checkout ${GIT_COMMIT} && \
+RUN go install github.com/ipchama/dupligator@latest
+RUN apk --no-cache add git && \
+    git clone https://github.com/ipchama/dupligator.git /go/src/dupligator && \
+    cd /go/src/dupligator && \
+    git checkout 6721d9941eb2674aef14249e2fc6dcecbfe46163 && \
+    go mod init && \
+    go mod tidy && \
     go build -o bin/dupligator . && \
     mv bin/dupligator /usr/bin/dupligator
 
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN adduser --system dupligator
+RUN addgroup dupligator && \
+    adduser --system dupligator dupligator
 
 COPY --chown=dupligator --from=builder /usr/bin/dupligator /usr/bin/dupligator
 
