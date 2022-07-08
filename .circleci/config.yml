@@ -38,6 +38,8 @@ workflows:
           context: "Publishing"
       - diag:
           context: "Publishing"
+      - dupligator:
+          context: "Publishing"
       - featmap:
           context: "Publishing"
       - freeradius:
@@ -81,6 +83,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./diag"
+
+  dupligator:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./dupligator"
 
   featmap:
     executor: build-executor
