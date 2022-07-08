@@ -11,6 +11,7 @@ RUN groupadd --gid 10001 diaguser && \
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates="${CA_CERT_VERSION}" \
+    attr \
     curl \
     htop \
     libcap2-bin \
@@ -28,9 +29,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
 
 USER 10001
 
-ENTRYPOINT [ "/bin/nc.openbsd" ]
-
-CMD ["-h"]
+CMD ["/usr/bin/bash"]
 
 ### Runtime information and not relevant at build time
 
