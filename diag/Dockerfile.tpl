@@ -5,6 +5,7 @@
 FROM "${BASE_IMAGE}"
 
 ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-darwin-amd64.zip /usr/bin/ngrok
+ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 /bin/tini
 
 RUN groupadd --gid 10001 diaguser && \
     adduser --uid 10001 --gid 10001 --home /home/diaguser diaguser --system
@@ -28,10 +29,10 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     vim \
     wget && \
     rm -rf /var/lib/apt/lists/* && \
-    chmod +rx /usr/bin/ngrok && \
+    chmod +rx /usr/bin/ngrok /bin/tini && \
     echo "diaguser ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/diaguser
 
-CMD ["/usr/bin/bash"]
+CMD ["/bin/tini", "--", "usr/bin/bash"]
 
 USER 10001
 
