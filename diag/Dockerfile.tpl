@@ -18,6 +18,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     iputils-ping \
     libcap2-bin \
     netcat \
+    sudo \
     sysstat \
     tcpdump \
     tmate \
@@ -27,7 +28,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     vim \
     wget && \
     rm -rf /var/lib/apt/lists/* && \
-    chmod +rx /usr/bin/ngrok
+    chmod +rx /usr/bin/ngrok && \
+    echo "diaguser ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/diaguser
 
 USER 10001
 
