@@ -31,9 +31,9 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     chmod +rx /usr/bin/ngrok && \
     echo "diaguser ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/diaguser
 
-# USER 10001
-
 CMD ["/usr/bin/bash"]
+
+USER 10001
 
 ### Runtime information and not relevant at build time
 
