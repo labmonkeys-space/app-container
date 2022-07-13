@@ -14,6 +14,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     attr \
     curl \
     htop \
+    iproute2 \
+    iputils-ping \
     libcap2-bin \
     netcat \
     sysstat \
