@@ -7,7 +7,7 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="antora/antora:3.0.2"
+export BASE_IMAGE="antora/antora:3.0.3"
 export BASH_VERSION="5.1.16-r2"
 export MAKE_VERSION="4.3-r0"
 export GIT_VERSION="2.36.2-r0"
