@@ -7,9 +7,9 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/ubuntu:jammy-20220531.b176"
-export S6_OVERLAY_VERSION="v3.1.1.1"
+export BASE_IMAGE="quay.io/labmonkeys/ubuntu:jammy-20220801.b187"
+export S6_OVERLAY_VERSION="v3.1.1.2"
 export INETUTILS_SYSLOGD_VERSION="2:2.2-2"
-export DOVECOT_IMAPD_VERSION="1:2.3.16+dfsg1-3ubuntu2"
+export DOVECOT_IMAPD_VERSION="1:2.3.16+dfsg1-3ubuntu2.1"
 export POSTFIX_VERSION="3.6.4-1ubuntu1"
 export WHOIS_VERSION="5.5.13"

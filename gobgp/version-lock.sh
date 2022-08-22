@@ -7,5 +7,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.0.b182"
-export GOBGP_VERSION="3.3.0"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.2.b205"
+export GOBGP_VERSION="3.5.0"
