@@ -66,6 +66,8 @@ workflows:
           context: "Publishing"
       - pleroma:
           context: "Publishing"
+      - udpgen:
+          context: "Publishing"
 
 jobs:
   antora:
@@ -169,3 +171,9 @@ jobs:
     steps:
       - make-image:
           workdir: "./pleroma"
+
+  udpgen:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./udpgen"
