@@ -58,8 +58,6 @@ workflows:
           context: "Publishing"
       - maven-17-jdk:
           context: "Publishing"
-      - maven-18-jdk:
-          context: "Publishing"
       - net-snmp:
           context: "Publishing"
       - onms-horizon:
@@ -147,12 +145,6 @@ jobs:
     steps:
       - make-image:
           workdir: "./maven-17-jdk"
-
-  maven-18-jdk:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./maven-18-jdk"
 
   net-snmp:
     executor: build-executor

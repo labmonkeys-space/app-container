@@ -8,5 +8,5 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BUILD_BASE_IMAGE="quay.io/labmonkeys/maven:jdk11.0.15-3.6.3.b459"
-export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.15.b141"
+export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.16.b152"
 export GIT_COMMIT="66c6a56"
