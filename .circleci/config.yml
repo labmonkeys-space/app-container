@@ -48,8 +48,6 @@ workflows:
           context: "Publishing"
       - gobgp:
           context: "Publishing"
-      - horizon-stream:
-          context: "Publishing"
       - karaf:
           context: "Publishing"
       - lldpd:
@@ -115,12 +113,6 @@ jobs:
     steps:
       - make-image:
           workdir: "./gobgp"
-
-  horizon-stream:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./horizon-stream"
 
   karaf:
     executor: build-executor
