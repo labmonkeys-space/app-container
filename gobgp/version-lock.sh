@@ -8,4 +8,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.2.b205"
-export GOBGP_VERSION="3.5.0"
+export GOBGP_VERSION="3.6.0"
