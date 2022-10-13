@@ -64,6 +64,8 @@ workflows:
           context: "Publishing"
       - udpgen:
           context: "Publishing"
+      - zebra:
+          context: "Publishing"
 
 jobs:
   antora:
@@ -161,3 +163,9 @@ jobs:
     steps:
       - make-image:
           workdir: "./udpgen"
+
+  zebra:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./zebra"
