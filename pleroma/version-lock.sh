@@ -8,4 +8,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="elixir:1.11.4-alpine"
-export PLEROMA_VERSION="v2.4.3"
+export PLEROMA_VERSION="v2.4.4"
