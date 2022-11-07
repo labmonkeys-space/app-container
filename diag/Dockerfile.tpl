@@ -14,7 +14,9 @@ RUN groupadd --gid 10001 diaguser && \
 RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates="${CA_CERT_VERSION}" \
     attr \
     curl \
+    dnsutils \
     htop \
+    iperf3 \
     iproute2 \
     iputils-ping \
     libcap2-bin \
