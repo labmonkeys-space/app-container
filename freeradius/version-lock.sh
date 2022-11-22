@@ -10,4 +10,4 @@ export DATE
 export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3.b241"
 export FREERADIUS_VERSION="3.0.25-r2"
 export SQLITE_VERSION="3.38.5-r0"
-export OPENSSL_VERSION="1.1.1q-r0"
+export OPENSSL_VERSION="1.1.1s-r0"
