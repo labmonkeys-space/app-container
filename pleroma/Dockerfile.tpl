@@ -3,40 +3,49 @@
 ###
 
 # hadolint ignore=DL3006
-FROM "${BASE_IMAGE}"
+FROM "${BASE_IMAGE_BUILD}" as build
 
 ENV MIX_ENV=prod
 
-RUN apk add --no-cache git gcc g++ musl-dev make cmake file-dev \
-            exiftool imagemagick libmagic ncurses postgresql-client ffmpeg
+RUN apk add --no-cache git gcc g++ musl-dev make cmake file-dev && \
+    git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /usr/src/pleroma
 
-RUN addgroup -g 911 pleroma && \
-    adduser -h /pleroma -s /bin/false -D -G pleroma -u 911 pleroma
+WORKDIR /usr/src/pleroma
 
-RUN mkdir -p /etc/pleroma && \
-    chown -R pleroma /etc/pleroma && \
-    mkdir -p /var/lib/pleroma/uploads && \
-    mkdir -p /var/lib/pleroma/static && \
-    chown -R pleroma /var/lib/pleroma
-
-USER pleroma
-WORKDIR /pleroma
-
-RUN git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /pleroma  && \
-    git checkout ${PLEROMA_VERSION}
+RUN git checkout ${PLEROMA_VERSION}
 
 RUN echo "import Mix.Config" > config/prod.secret.exs && \
     mix local.hex --force && \
     mix local.rebar --force && \
     mix deps.get --only prod && \
-    mkdir release && \
-    mix release --path /pleroma
+    mkdir /release && \
+    mix release --path /release
 
-COPY ./container-fs/config.exs /etc/pleroma/config.exs
+###
+# Runtime image
+###
+FROM "${BASE_IMAGE}"
 
-EXPOSE 4000
+RUN apk add --no-cache exiftool ffmpeg imagemagick libmagic ncurses postgresql-client && \
+    addgroup -g 911 pleroma && \
+    adduser -h /pleroma -s /bin/false -D -G pleroma -u 911 pleroma && \
+    mkdir -p /etc/pleroma && \
+    chown -R pleroma /etc/pleroma && \
+    mkdir -p /var/lib/pleroma/uploads && \
+    mkdir -p /var/lib/pleroma/static && \
+    chown -R pleroma /var/lib/pleroma
+
+COPY --from=build --chown=pleroma:0 /release /pleroma
+COPY --from=build --chown=pleroma:0 /usr/src/pleroma/config/docker.exs /etc/pleroma/config.exs
+COPY --from=build --chown=pleroma:0 /usr/src/pleroma/docker-entrypoint.sh /pleroma
+
+WORKDIR /pleroma
+
+USER pleroma
 
 ENTRYPOINT ["/pleroma/docker-entrypoint.sh"]
+
+EXPOSE 4000
 
 LABEL org.opencontainers.image.created="${DATE}" \
       org.opencontainers.image.source="${VCS_SOURCE}" \

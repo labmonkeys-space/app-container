@@ -7,5 +7,6 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="elixir:1.11.4-alpine"
+export BASE_IMAGE_BUILD="elixir:1.11.4-alpine"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3.b241"
 export PLEROMA_VERSION="v2.4.4"
