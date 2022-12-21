@@ -7,7 +7,7 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3.b241"
-export FREERADIUS_VERSION="3.0.25-r2"
-export SQLITE_VERSION="3.38.5-r0"
-export OPENSSL_VERSION="1.1.1s-r0"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.17.0-20221221.b257"
+export FREERADIUS_VERSION="3.0.26-r0"
+export SQLITE_VERSION="3.40.0-r0"
+export OPENSSL_VERSION="3.0.7-r0"

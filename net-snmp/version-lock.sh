@@ -7,5 +7,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3.b241"
-export NETSNMP_VERSION="5.9.3-r0"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.17.0-20221221.b257"
+export NETSNMP_VERSION="5.9.3-r1"

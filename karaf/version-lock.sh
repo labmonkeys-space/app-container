@@ -8,5 +8,5 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export KARAF_HOME="/opt/karaf"
-export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.17.b155"
+export BASE_IMAGE="quay.io/labmonkeys/openjdk:jre-11.0.17.b158"
 export KARAF_VERSION="4.3.8"
