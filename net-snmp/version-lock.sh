@@ -8,4 +8,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="quay.io/labmonkeys/alpine:3.17.1-20230131.b265"
-export NETSNMP_VERSION="5.9.3-r1"
+export NETSNMP_VERSION="5.9.3-r2"
