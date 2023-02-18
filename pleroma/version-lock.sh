@@ -8,5 +8,5 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE_BUILD="elixir:1.11.4-alpine"
-export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.3-20230131.b258"
+export BASE_IMAGE="quay.io/labmonkeys/alpine:3.16.4-20230218.b281"
 export PLEROMA_VERSION="v2.5.0"
