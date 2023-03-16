@@ -60,8 +60,6 @@ workflows:
           context: "Publishing"
       - net-snmp:
           context: "Publishing"
-      - onms-horizon:
-          context: "Publishing"
       - pleroma:
           context: "Publishing"
       - udpgen:
@@ -153,12 +151,6 @@ jobs:
     steps:
       - make-image:
           workdir: "./net-snmp"
-
-  onms-horizon:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./onms-horizon"
 
   pleroma:
     executor: build-executor

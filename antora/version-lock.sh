@@ -12,6 +12,6 @@ export DATE
 export BASE_IMAGE="${APP_ANTORA}"
 export BASH_VERSION="5.1.16-r2"
 export MAKE_VERSION="4.3-r0"
-export GIT_VERSION="2.36.3-r0"
+export GIT_VERSION="2.36.5-r0"
 export OPENSSH_CLIENT_VERSION="9.0_p1-r2"
 export LUNR_EXTENSION_VERSION="1.0.0-alpha.8"

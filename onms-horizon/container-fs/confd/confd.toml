@@ -1,4 +1,0 @@
-confdir = "/etc/confd"
-backend = "file"
-file = [ "/etc/confd/onms-confd-config.yaml" ]
-log-level = "info"
