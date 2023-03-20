@@ -32,6 +32,8 @@ workflows:
 
   build:
     jobs:
+      - activemq:
+          context: "Publishing"
       - antora:
           context: "Publishing"
       - cerebro:
@@ -68,6 +70,12 @@ workflows:
           context: "Publishing"
 
 jobs:
+  activemq:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./activemq"
+
   antora:
     executor: build-executor
     steps:
