@@ -50,6 +50,8 @@ workflows:
           context: "Publishing"
       - gobgp:
           context: "Publishing"
+      - haste-server:
+          context: "Publishing"
       - jira-exporter:
           context: "Publishing"
       - karaf:
@@ -123,6 +125,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./gobgp"
+
+  haste-server:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./haste-server"
 
   jira-exporter:
     executor: build-executor
