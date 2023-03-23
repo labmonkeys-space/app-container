@@ -11,6 +11,8 @@ RUN apt-get update && apt -y install git-core && \
     cd /app && \
     git checkout ${GIT_COMMIT} && \
     chown -R node:node /app && \
+    apt purge -y git-core && \
+    apt-get -y autoremove && apt-get -y autoclean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /app/.git
 
