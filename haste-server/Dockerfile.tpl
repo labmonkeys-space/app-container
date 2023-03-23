@@ -6,14 +6,11 @@
 FROM "${BASE_IMAGE}"
 
 # hadolint ignore=DL3018, DL3003
-RUN apt-get update && apt -y install git-core && \
+RUN apk add --no-cache git && \
     git clone https://github.com/toptal/haste-server.git /app && \
     cd /app && \
     git checkout ${GIT_COMMIT} && \
     chown -R node:node /app && \
-    apt purge -y git-core && \
-    apt-get -y autoremove && apt-get -y autoclean && \
-    rm -rf /var/lib/apt/lists/* && \
     rm -rf /app/.git
 
 USER node
