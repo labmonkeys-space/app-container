@@ -4,11 +4,14 @@
 
 FROM "${BASE_IMAGE}"
 
-ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-darwin-amd64.zip /usr/bin/ngrok
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 /bin/tini
+ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz /tmp/ngrok.tgz
+ADD https://github.com/labmonkeys-space/g-userping/releases/download/v0.1.0/g-userping_0.1.0_linux_amd64.tar.gz /tmp/g-userping.tar.gz
 
 RUN groupadd --gid 10001 diaguser && \
-    adduser --uid 10001 --gid 10001 --home /home/diaguser diaguser --system
+    adduser --uid 10001 --gid 10001 --home /home/diaguser diaguser --system && \
+    tar xzf /tmp/g-userping.tar.gz -C /usr/bin && \
+    tar xzf /tmp/ngrok.tgz -C /usr/bin
 
 ENV DEBIAN_FRONTEND=noninteractive
 
