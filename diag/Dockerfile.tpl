@@ -51,6 +51,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     tcpxtract \
     tmate \
     tmux \
+    traceroute \
     tshark \
     unzip \
     vim \
