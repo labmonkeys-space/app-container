@@ -42,6 +42,7 @@ robotframework-datetime-tz==1.0.6
 robotframework-faker==5.0.0
 robotframework-ftplibrary==1.9
 robotframework-imaplibrary2==0.4.6
+robotframework-jsonlibrary==0.5
 robotframework-pabot==2.15.0
 robotframework-pythonlibcore==4.1.2
 robotframework-requests==0.9.4
