@@ -66,6 +66,8 @@ workflows:
           context: "Publishing"
       - pleroma:
           context: "Publishing"
+      - robotframework:
+          context: "Publishing"
       - udpgen:
           context: "Publishing"
       - zebra:
@@ -173,6 +175,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./pleroma"
+
+  robotframework:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./robotframework"#
 
   udpgen:
     executor: build-executor
