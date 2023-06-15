@@ -1,1 +1,1 @@
-activemq:5.17.4
+activemq:5.18.1

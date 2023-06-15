@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends curl && \
     mkdir ${ACTIVEMQ_HOME} && \
-    curl -L "http://www.apache.org/dyn/closer.cgi?filename=/activemq/${ACTIVEMQ_VERSION}/apache-activemq-${ACTIVEMQ_VERSION}-bin.tar.gz&action=download" -o ${ACTIVEMQ_HOME}/activemq-bin.tar.gz && \
+    curl -L "https://www.apache.org/dyn/closer.cgi?filename=/activemq/${ACTIVEMQ_VERSION}/apache-activemq-${ACTIVEMQ_VERSION}-bin.tar.gz&action=download" -o ${ACTIVEMQ_HOME}/activemq-bin.tar.gz && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR "${ACTIVEMQ_HOME}"
