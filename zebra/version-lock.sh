@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
-export QUAGGA_VERSION="1.2.4-r6"
+export QUAGGA_VERSION="1.2.4-r8"

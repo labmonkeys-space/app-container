@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_UBUNTU_JAMMY}"
-export GIT_COMMIT="b6b93fc667de49c508d560c1ebbfde370c99f22d"
+export GIT_COMMIT="cf8d3cb5dd19e12350e862b98f86b22ea517ff87"
