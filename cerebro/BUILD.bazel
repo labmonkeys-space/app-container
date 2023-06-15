@@ -1,0 +1,9 @@
+load("@io_bazel_rules_docker//java:image.bzl", "java_image")
+
+java_image(
+    name = "java_image",
+    srcs = ["Binary.java"],
+    # Put these runfiles into their own layer.
+    layers = [":java_image_library"],
+    main_class = "examples.images.Binary",
+)
