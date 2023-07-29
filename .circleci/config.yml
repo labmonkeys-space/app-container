@@ -68,6 +68,8 @@ workflows:
           context: "Publishing"
       - robotframework:
           context: "Publishing"
+      - shellcheck:
+          context: "Publishing"
       - udpgen:
           context: "Publishing"
       - zebra:
@@ -180,7 +182,13 @@ jobs:
     executor: build-executor
     steps:
       - make-image:
-          workdir: "./robotframework"#
+          workdir: "./robotframework"
+
+  shellcheck:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./shellcheck"
 
   udpgen:
     executor: build-executor
