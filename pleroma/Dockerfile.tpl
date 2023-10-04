@@ -26,7 +26,7 @@ RUN mix release --path /release
 ###
 FROM "${BASE_IMAGE}"
 
-RUN apk add --no-cache exiftool ffmpeg imagemagick libmagic ncurses postgresql-client && \
+RUN apk add --no-cache exiftool ffmpeg imagemagick libmagic ncurses postgresql-client openssl1.1-compat-dev&& \
     addgroup -g 911 pleroma && \
     adduser -h /pleroma -s /bin/false -D -G pleroma -u 911 pleroma && \
     mkdir -p /etc/pleroma && \
