@@ -6,7 +6,7 @@ FROM "${BASE_IMAGE}"
 
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 /bin/tini
 ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz /tmp/ngrok.tgz
-ADD https://github.com/labmonkeys-space/g-userping/releases/download/v0.1.0/g-userping_0.1.0_linux_amd64.tar.gz /tmp/g-userping.tar.gz
+ADD https://github.com/prometheus-community/pro-bing/releases/download/v0.3.0/ping_0.3.0_linux_amd64.tar.gz /tmp/ping.tar.gz
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -59,7 +59,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     zsh && \
     rm -rf /var/lib/apt/lists/* && \
     echo "${DEBIAN_FRONTEND}" && \
-    tar xzf /tmp/g-userping.tar.gz -C /usr/bin && \
+    tar xzf /tmp/ping.tar.gz -C /tmp --strip-components=1 && \
+    mv /tmp/ping /usr/bin/gping && \
     tar xzf /tmp/ngrok.tgz -C /usr/bin && \
     chmod +rx /usr/bin/ngrok /bin/tini && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \

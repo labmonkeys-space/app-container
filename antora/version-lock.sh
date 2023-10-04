@@ -10,8 +10,8 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${APP_ANTORA}"
-export BASH_VERSION="5.1.16-r2"
-export MAKE_VERSION="4.3-r0"
-export GIT_VERSION="2.36.6-r0"
-export OPENSSH_CLIENT_VERSION="9.0_p1-r3"
+export BASH_VERSION="5.2.15-r5"
+export MAKE_VERSION="4.4.1-r1"
+export GIT_VERSION="2.40.1-r0"
+export OPENSSH_CLIENT_VERSION="9.3_p2-r0"
 export LUNR_EXTENSION_VERSION="1.0.0-alpha.8"

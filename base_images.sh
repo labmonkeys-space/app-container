@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Base images as dependencies
-export OS_UBUNTU_JAMMY="quay.io/labmonkeys/ubuntu:jammy-20230522.b319"
-export OS_ALPINE="quay.io/labmonkeys/alpine:3.18.2-20230615.b320"
-export APP_ANTORA="antora/antora:3.1.2"
+export OS_UBUNTU_JAMMY="quay.io/labmonkeys/ubuntu:jammy-20230916.b331"
+export OS_ALPINE="quay.io/labmonkeys/alpine:3.18.4-20231004.b335"
+export APP_ANTORA="antora/antora:3.1.4"
 export LANG_JRE_11="quay.io/labmonkeys/openjdk:jre-11.0.19.b172"
 export LANG_JDK_11="quay.io/labmonkeys/openjdk:jdk-11.0.19.b170"
 export LANG_JRE_17="quay.io/labmonkeys/openjdk:jre-17.0.7.b171"

@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${LANG_NODE_16}"
-export GIT_COMMIT="b52b394bad909ddf151073987671e843540d91d6"
+export GIT_COMMIT="ded18b0c2e1ad05eaba6ab5bb938ae6b54cb5147"
