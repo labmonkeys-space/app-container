@@ -10,13 +10,7 @@ ADD "https://github.com/gohugoio/hugo/releases/download/v${GOHUGO_VERSION}/hugo_
 RUN tar xzf /tmp/gohugo.tar.gz -C /usr/bin && \
     rm -rf /tmp/gohugo.tar.gz && \
     apk add --no-cache ruby=${RUBY_VERSION} bash npm=${NPM_VERSION} git && \
-    gem install asciidoctor -v ${ASCIIDOCTOR_VERSION}  && \
-    addgroup -g 10001 hugo && \
-    adduser -D -u 10001 -G hugo -h /home/hugo hugo
-
-USER 10001
-
-WORKDIR /home/hugo
+    gem install asciidoctor -v ${ASCIIDOCTOR_VERSION}
 
 ENTRYPOINT [ "/usr/bin/hugo" ]
 
