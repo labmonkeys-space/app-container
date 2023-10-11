@@ -50,6 +50,8 @@ workflows:
           context: "Publishing"
       - gobgp:
           context: "Publishing"
+      - gohugo:
+          context: "Publishing"
       - haste-server:
           context: "Publishing"
       - jira-exporter:
@@ -129,6 +131,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./gobgp"
+
+  gohugo:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./gohugo"
 
   haste-server:
     executor: build-executor
