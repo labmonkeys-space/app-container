@@ -7,6 +7,8 @@ FROM "${BASE_IMAGE}"
 
 RUN apk --no-cache add bash="${BASH_VERSION}" git="${GIT_VERSION}" github-cli="${GITHUB_CLI_VERSION}"
 
+COPY init.sh /init.sh
+
 CMD [ "/usr/bin/git", "--help" ]
 
 ### Runtime information and not relevant at build time
