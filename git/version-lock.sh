@@ -12,3 +12,4 @@ export DATE
 export BASE_IMAGE="${OS_ALPINE}"
 export BASH_VERSION="5.2.15-r5"
 export GIT_VERSION="2.40.1-r0"
+export GITHUB_CLI_VERSION="2.29.0-r3"
