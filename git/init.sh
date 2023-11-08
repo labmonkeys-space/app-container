@@ -5,13 +5,13 @@ set -eEo pipefail
 # shellcheck disable=SC2154
 trap 's=$?; echo >&2 "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
-OPENNMS_OVERLAY=/opt/opennms-overlay
+GIT_DATA=/data/opennms-overlay
 GIT_HOST="${GIT_HOST:-github.com}"
 GIT_HOST_SCHEME="${GIT_HOST_SCHEME:-https}"
 
 if [ -z "${GIT_REPO}" ]; then
   echo "The GIT_REPO environment variable is required."
-  echo "You need to set it to a GitHub repository to fetch a configuration for the OPENNMS_OVERLAY directory."
+  echo "You need to set it to a GitHub repository to fetch into the GIT_DATA directory."
   echo "Set the environment variable with something like: GIT_REPO=myorg/repo"
   exit 1
 fi
@@ -23,17 +23,16 @@ if [ -n "${GIT_USER}" ] && [ -n "${GIT_PASS}" ]; then
   echo "${GIT_HOST_SCHEME}://${GIT_USER}:${GIT_PASS}@${GIT_HOST}/${GIT_REPO}" > ~/.git-credentials
 fi
 
-if [ -d "${OPENNMS_OVERLAY}" ] ; then
-  echo "Clone skipped because the folder ${OPENNMS_OVERLAY} exists"
-  cd ${OPENNMS_OVERLAY}
+if [ -d "${GIT_DATA}/.git" ] ; then
+  echo "Clone skipped because ${GIT_DATA} is a git repository already."
+  cd ${GIT_DATA}
   git pull
 else
-  echo "Initialize ${OPENNMS_OVERLAY} from reppository ${GIT_REPO}"
-  git clone "${GIT_HOST_SCHEME}://${GIT_HOST}/${GIT_REPO}.git" "${OPENNMS_OVERLAY}"
+  echo "Initialize ${GIT_DATA} from reppository ${GIT_REPO}"
+  git clone "${GIT_HOST_SCHEME}://${GIT_HOST}/${GIT_REPO}.git" "${GIT_DATA}"
 fi
 
 if [ -f ~/.git-credentials ]; then
   echo "Clean up credentials"
   rm ~/.git-credentials
 fi
-
