@@ -46,6 +46,8 @@ workflows:
           context: "Publishing"
       - freeradius:
           context: "Publishing"
+      - git:
+          context: "Publishing"
       - gobetween:
           context: "Publishing"
       - gobgp:
@@ -119,6 +121,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./freeradius"
+
+  git:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./git"
 
   gobetween:
     executor: build-executor
