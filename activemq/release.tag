@@ -1,1 +1,1 @@
-activemq:5.18.1
+activemq:6.0.1
