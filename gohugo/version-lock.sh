@@ -13,5 +13,5 @@ export BASE_IMAGE="${OS_ALPINE}"
 export GOHUGO_VERSION="0.119.0"
 export RUBY_VERSION="3.2.2-r0"
 export ASCIIDOCTOR_VERSION="2.0.20"
-export NPM_VERSION="9.6.6-r0"
+export NPM_VERSION="10.2.5-r0"
 
