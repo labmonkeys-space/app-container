@@ -46,6 +46,8 @@ workflows:
           context: "Publishing"
       - freeradius:
           context: "Publishing"
+      - frrouting:
+          context: "Publishing"
       - git:
           context: "Publishing"
       - gobetween:
@@ -121,6 +123,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./freeradius"
+
+  frrouting:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./frrouting"
 
   git:
     executor: build-executor
