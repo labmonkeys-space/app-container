@@ -7,11 +7,20 @@ FROM "${BASE_IMAGE}"
 
 RUN apt-get update && \
     apt-get -y install curl \
+                       dnsutils \
                        gnupg2 \
-                       lsb-release \
-                       xz-utils \
+                       iftop \
+                       inetutils-ping \
+                       iperf3 \
+                       iptraf-ng \
                        lldpd \
-                       snmpd && \
+                       lsb-release \
+                       mtr-tiny \
+                       snmpd \
+                       tcptraceroute \
+                       traceroute \
+                       xz-utils \
+                       && \
     curl -s https://deb.frrouting.org/frr/keys.asc | apt-key add - && \
     echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | tee -a /etc/apt/sources.list.d/frr.list && \
     apt-get update && \
