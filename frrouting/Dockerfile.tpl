@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get -y install curl \
                        gnupg2 \
                        lsb-release \
-                       tini \
+                       xz-utils \
                        lldpd \
                        snmpd && \
     curl -s https://deb.frrouting.org/frr/keys.asc | apt-key add - && \
@@ -21,11 +21,20 @@ RUN apt-get update && \
     mkdir -p /etc/snmp/conf.d && \
     chown -R frr:frr /etc/frr /var/run/frr
 
+# Using s6 to run lldpd and snmpd in the container
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
+    tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+
+# Add a basic configuration for lldpd and snmpd to the container
+COPY config/s6/services /etc/services.d
 COPY config/lldpd.conf /etc/lldpd.d
 COPY config/snmpd.conf /etc/snmp/
 
 # Simple init manager for reaping processes and forwarding signals
-ENTRYPOINT ["/usr/bin/tini", "--"]
+ENTRYPOINT ["/init"]
 
 # Default CMD starts watchfrr
 COPY docker-start /usr/lib/frr/docker-start

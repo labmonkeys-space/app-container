@@ -10,3 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_UBUNTU_JAMMY}"
+export S6_OVERLAY_VERSION="3.1.6.2"
