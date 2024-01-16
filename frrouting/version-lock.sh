@@ -9,7 +9,4 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="quay.io/labmonkeys/frrouting:9.1.b2502"
-export NETSNMP_VERSION="5.9.3-r3"
-export LLDPD_VERSION="1.0.16-r1"
-export S6_OVERLAY_VERSION="3.1.5.0-r0"
+export BASE_IMAGE="${OS_UBUNTU_JAMMY}"

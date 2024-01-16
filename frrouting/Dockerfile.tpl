@@ -5,18 +5,31 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add net-snmp="${NETSNMP_VERSION}" lldpd="${LLDPD_VERSION}" s6-overlay="${S6_OVERLAY_VERSION}" && \
-    mkdir -p /etc/snmp/conf.d
+RUN apt-get update && \
+    apt-get -y install curl \
+                       gnupg2 \
+                       lsb-release \
+                       tini \
+                       lldpd \
+                       snmpd && \
+    curl -s https://deb.frrouting.org/frr/keys.asc | apt-key add - && \
+    echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | tee -a /etc/apt/sources.list.d/frr.list && \
+    apt-get update && \
+    apt-get -y install frr-snmp && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /var/run/frr && \
+    mkdir -p /etc/snmp/conf.d && \
+    chown -R frr:frr /etc/frr /var/run/frr
 
-COPY config/snmpd.conf /etc/snmp/snmpd.conf
-COPY config/lldpd.conf /etc/lldpd.conf
-COPY config/s6/services /etc/services.d
+COPY config/lldpd.conf /etc/lldpd.d
+COPY config/snmpd.conf /etc/snmp/
 
-USER root
+# Simple init manager for reaping processes and forwarding signals
+ENTRYPOINT ["/usr/bin/tini", "--"]
 
-ENTRYPOINT [ "/init" ]
-
-CMD [ "/usr/lib/frr/docker-start" ]
+# Default CMD starts watchfrr
+COPY docker-start /usr/lib/frr/docker-start
+CMD ["/usr/lib/frr/docker-start"]
 
 ### Runtime information and not relevant at build time
 
