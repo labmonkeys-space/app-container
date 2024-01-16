@@ -16,6 +16,7 @@ RUN apt-get update && \
                        lldpd \
                        lsb-release \
                        mtr-tiny \
+                       procps \
                        snmpd \
                        tcptraceroute \
                        traceroute \
