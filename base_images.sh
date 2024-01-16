@@ -3,6 +3,7 @@
 # Base images as dependencies
 export OS_UBUNTU_JAMMY="quay.io/labmonkeys/ubuntu:jammy-20231128.b344"
 export OS_ALPINE="quay.io/labmonkeys/alpine:3.19-20231215.b341"
+export OS_DEBIAN_BOOKWORM="debian:bookworm-20240110-slim"
 export APP_ANTORA="antora/antora:3.1.5"
 export LANG_JRE_11="quay.io/labmonkeys/openjdk:jre-11.0.21.b179"
 export LANG_JDK_11="quay.io/labmonkeys/openjdk:jdk-11.0.21.b181"
