@@ -16,6 +16,7 @@ RUN apt-get update && \
                        lldpd \
                        lsb-release \
                        mtr-tiny \
+                       pmacct \
                        procps \
                        snmpd \
                        tcptraceroute \
@@ -38,10 +39,11 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLA
 RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
-# Add a basic configuration for lldpd and snmpd to the container
+# Add a basic configuration for lldpd, snmpd and pmacctd to the container
 COPY config/s6/services /etc/services.d
 COPY config/lldpd.conf /etc/lldpd.d
 COPY config/snmpd.conf /etc/snmp/
+COPY config/pmacctd.conf /etc/pmacct/pmacctd.conf
 
 # Simple init manager for reaping processes and forwarding signals
 ENTRYPOINT ["/init"]
