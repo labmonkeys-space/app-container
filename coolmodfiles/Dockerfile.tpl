@@ -5,9 +5,8 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add git
-
-RUN addgroup coolmod && \
+RUN apk --no-cache add git && \
+    addgroup coolmod && \
     adduser --system coolmod coolmod
     
 USER coolmod
