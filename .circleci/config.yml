@@ -58,10 +58,6 @@ workflows:
           context: "Publishing"
       - gohugo:
           context: "Publishing"
-      - haste-server:
-          context: "Publishing"
-      - jira-exporter:
-          context: "Publishing"
       - karaf:
           context: "Publishing"
       - lldpd:
@@ -161,19 +157,7 @@ jobs:
     steps:
       - make-image:
           workdir: "./gohugo"
-
-  haste-server:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./haste-server"
-
-  jira-exporter:
-    executor: build-executor
-    steps:
-      - make-image:
-          workdir: "./jira-exporter"
-
+  
   karaf:
     executor: build-executor
     steps:
