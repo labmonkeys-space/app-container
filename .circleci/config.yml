@@ -38,6 +38,8 @@ workflows:
           context: "Publishing"
       - cerebro:
           context: "Publishing"
+      - coolmodfiles:
+          context: "Publishing"
       - diag:
           context: "Publishing"
       - dupligator:
@@ -99,6 +101,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./cerebro"
+
+  coolmodfiles:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./coolmodfiles"
 
   diag:
     executor: build-executor
