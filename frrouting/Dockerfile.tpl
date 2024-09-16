@@ -26,7 +26,7 @@ RUN apt-get update && \
     curl -s https://deb.frrouting.org/frr/keys.asc | apt-key add - && \
     echo deb https://deb.frrouting.org/frr $(lsb_release -s -c) frr-stable | tee -a /etc/apt/sources.list.d/frr.list && \
     apt-get update && \
-    apt-get -y install frr-snmp && \
+    apt-get -y install frr-snmp="${FRR_VERSION}" && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /var/run/frr && \
     mkdir -p /etc/snmp/conf.d && \
