@@ -9,5 +9,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="${OS_UBUNTU_JAMMY}"
+export BASE_IMAGE="${OS_UBUNTU}"
 export GIT_COMMIT="500967216ddad627480b7d204411a3ec6b1ec4b0"

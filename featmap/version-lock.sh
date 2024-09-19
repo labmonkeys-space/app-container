@@ -9,5 +9,5 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="${OS_UBUNTU_JAMMY}"
+export BASE_IMAGE="${OS_UBUNTU}"
 export FEATMAP_VERSION="2.1.0"

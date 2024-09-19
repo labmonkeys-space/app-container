@@ -10,6 +10,6 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
-export BASH_VERSION="5.2.21-r0"
-export GIT_VERSION="2.43.0-r0"
-export GITHUB_CLI_VERSION="2.39.2-r0"
+export BASH_VERSION="5.2.26-r0"
+export GIT_VERSION="2.45.2-r0"
+export GITHUB_CLI_VERSION="2.47.0-r4"

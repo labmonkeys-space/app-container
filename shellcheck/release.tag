@@ -1,1 +1,1 @@
-shellcheck:0.9.0-r4
+shellcheck:0.10.0-r1

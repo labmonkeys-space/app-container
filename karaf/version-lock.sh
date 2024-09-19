@@ -10,5 +10,5 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export KARAF_HOME="/opt/karaf"
-export BASE_IMAGE="${LANG_JRE_11}"
-export KARAF_VERSION="4.4.4"
+export BASE_IMAGE="${LANG_JRE_17}"
+export KARAF_VERSION="4.4.6"

@@ -31,8 +31,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     libcap2-bin \
     ltrace \
     mtr \
-    mz \
-    netcat \
+    netcat-traditional \
     netdiag \
     netr \
     nfswatch \

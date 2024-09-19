@@ -10,6 +10,6 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
-export BASH_VERSION="5.2.21-r0"
+export BASH_VERSION="5.2.26-r0"
 export NETSNMP_VERSION="5.9.4-r0"
-export LLDPD_VERSION="1.0.17-r1"
+export LLDPD_VERSION="1.0.18-r0"

@@ -16,8 +16,8 @@ RUN apt-get update && apt-get --no-install-recommends -y install curl && \
     tar xzf /opt/cerebro.tar.gz --strip-components=1 -C "${CEREBRO_HOME}" && \
     sed -i '/<appender-ref ref="FILE"\/>/d' ${CEREBRO_HOME}/conf/logback.xml && \
     sed -i 's/\.\/cerebro.db/\/opt\/cerebro\/data\/cerebro\.db/g' ${CEREBRO_HOME}/conf/application.conf && \
-    addgroup -gid 1000 cerebro && \
-    adduser -q --system --no-create-home --disabled-login -gid 1000 -uid 1000 cerebro && \
+    groupadd --gid 1001 cerebro && \
+    useradd --system --no-create-home --gid 1001 --uid 1001 cerebro && \
     chown cerebro:cerebro ${CEREBRO_HOME} && \
     chown -R cerebro:cerebro ${CEREBRO_HOME}/conf \
                              ${CEREBRO_HOME}/logs \

@@ -6,7 +6,7 @@ FROM "${BASE_IMAGE}"
 
 ADD https://github.com/amborle/featmap/releases/download/v${FEATMAP_VERSION}/featmap-${FEATMAP_VERSION}-linux-amd64 /opt/featmap/featmap
 
-RUN adduser --system featmap && \
+RUN useradd --system featmap && \
     chmod +rx /opt/featmap/featmap && \
     chown -R featmap /opt/featmap
 
