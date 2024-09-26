@@ -11,4 +11,4 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_DEBIAN}"
 export S6_OVERLAY_VERSION="3.2.0.0"
-export FRR_VERSION="10.1-0~deb12u1"
+export FRR_VERSION="10.1.1-0~deb12u1"
