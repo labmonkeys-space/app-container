@@ -2,7 +2,7 @@
 
 # Base images as dependencies
 export OS_UBUNTU="quay.io/labmonkeys/ubuntu:noble-20240827.1.b355"
-export OS_ALPINE="quay.io/labmonkeys/alpine:3.20-20240919.b356"
+export OS_ALPINE="quay.io/labmonkeys/alpine:3.20-20241001.b365"
 export OS_DEBIAN="quay.io/labmonkeys/debian:bookworm-20240904-slim.b362"
 export APP_ANTORA="antora/antora:3.1.9"
 export LANG_JRE_11="quay.io/labmonkeys/openjdk:jre-11.0.24.b188"
