@@ -68,6 +68,8 @@ workflows:
           context: "Publishing"
       - net-snmp:
           context: "Publishing"
+      - onms-minion:
+          context: "Publishing"
       - pleroma:
           context: "Publishing"
       - robotframework:
@@ -187,6 +189,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./net-snmp"
+
+  onms-minion:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./onms-minion"
 
   pleroma:
     executor: build-executor
