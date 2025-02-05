@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-exec 2>&1
-exec /usr/sbin/pmacctd -f /etc/pmacct/pmacctd.conf

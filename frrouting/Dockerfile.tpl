@@ -16,7 +16,7 @@ RUN apt-get update && \
                        lldpd \
                        lsb-release \
                        mtr-tiny \
-                       pmacct \
+                       softflowd \
                        procps \
                        snmpd \
                        tcptraceroute \
@@ -43,7 +43,6 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
 COPY config/s6/services /etc/services.d
 COPY config/lldpd.conf /etc/lldpd.d
 COPY config/snmpd.conf /etc/snmp/
-COPY config/pmacctd.conf /etc/pmacct/pmacctd.conf
 
 # Simple init manager for reaping processes and forwarding signals
 ENTRYPOINT ["/init"]
@@ -53,6 +52,15 @@ COPY docker-start /usr/lib/frr/docker-start
 CMD ["/usr/lib/frr/docker-start"]
 
 ### Runtime information and not relevant at build time
+ENV FLOW_VERSION="10"
+ENV FLOW_SAMPLING="1"
+ENV FLOW_COLLECTOR_HOST="127.0.0.1"
+
+# Only UDP ports are supported right now
+ENV FLOW_COLLECTOR_PORT="9999"
+
+# This can be a comma separated list, e.g. eth1,eth2,eth3
+ENV FLOW_INTERFACES="eth0"
 
 EXPOSE 161/udp
 
