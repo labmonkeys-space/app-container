@@ -44,6 +44,7 @@ COPY config/s6/services /etc/services.d
 COPY config/lldpd.conf /etc/lldpd.d
 COPY config/snmpd.conf /etc/snmp/
 COPY config/pmacctd.conf /etc/pmacct/pmacctd.conf
+COPY config/interfaces.map /etc/pmacct/interfaces.map
 
 # Simple init manager for reaping processes and forwarding signals
 ENTRYPOINT ["/init"]
