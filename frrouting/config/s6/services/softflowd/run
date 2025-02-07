@@ -1,0 +1,3 @@
+#!/command/with-contenv bash
+exec 2>&1
+exec /usr/sbin/softflowd -t maxlife="${FLOW_TIMEOUT_MAXLIFE:-10s}" -t general="${FLOW_TIMEOUT_GENERAL:-10s}" -A "${FLOW_TIME_FORMAT:-nano}" -d -i any -N -v "${FLOW_VERSION:-10}" -s "${FLOW_SAMPLING:-1}" -n "${FLOW_COLLECTOR:-127.0.0.1:9999}" -D "${FLOW_BPF_FILTER}"
