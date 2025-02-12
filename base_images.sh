@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Base images as dependencies
-export OS_UBUNTU="quay.io/labmonkeys/ubuntu:noble-20240827.1.b355"
+export OS_UBUNTU="ubuntu:noble-20250127"
 export OS_ALPINE="quay.io/labmonkeys/alpine:3.20-20241001.b365"
 export OS_DEBIAN="debian:bookworm-20250203-slim"
 export APP_ANTORA="antora/antora:3.1.9"

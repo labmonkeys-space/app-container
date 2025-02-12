@@ -78,6 +78,8 @@ workflows:
           context: "Publishing"
       - udpgen:
           context: "Publishing"
+      - vpp:
+          context: "Publishing"
       - zebra:
           context: "Publishing"
 
@@ -219,6 +221,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./udpgen"
+
+  vpp:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./vpp"
 
   zebra:
     executor: build-executor
