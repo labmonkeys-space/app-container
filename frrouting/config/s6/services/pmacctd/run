@@ -1,0 +1,11 @@
+#!/command/with-contenv bash
+set -eEuo pipefail
+
+exec 2>&1
+
+IFS=',' read -r -a INTERFACES <<< "${INTERFACES}"
+for int in "${INTERFACES[@]}"; do
+  ifindex=$(cat /sys/class/net/${int}/ifindex)
+  printf "ifindex=%d ifname=%s direction=in\n" "${ifindex}" "${int}" >> /etc/pmacct/interfaces.map
+done
+exec /usr/sbin/pmacctd -f /etc/pmacct/pmacctd.conf

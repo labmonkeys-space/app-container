@@ -16,9 +16,9 @@ RUN apt-get update && \
                        lldpd \
                        lsb-release \
                        mtr-tiny \
+                       pmacct \
                        procps \
                        snmpd \
-                       softflowd \
                        tcptraceroute \
                        traceroute \
                        xz-utils \
@@ -43,6 +43,7 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
 COPY config/s6/services /etc/services.d
 COPY config/lldpd.conf /etc/lldpd.d
 COPY config/snmpd.conf /etc/snmp/
+COPY config/pmacctd.conf /etc/pmacct/pmacctd.conf
 
 # Simple init manager for reaping processes and forwarding signals
 ENTRYPOINT ["/init"]
@@ -52,6 +53,7 @@ COPY docker-start /usr/lib/frr/docker-start
 CMD ["/usr/lib/frr/docker-start"]
 
 ### Runtime information and not relevant at build time
+ENV INTERFACES=eth0
 
 EXPOSE 161/udp
 
