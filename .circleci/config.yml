@@ -76,6 +76,8 @@ workflows:
           context: "Publishing"
       - shellcheck:
           context: "Publishing"
+      - sunshine:
+          context: "Publishing"
       - udpgen:
           context: "Publishing"
       - vpp:
@@ -215,6 +217,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./shellcheck"
+
+  sunshine:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./sunshine"
 
   udpgen:
     executor: build-executor
