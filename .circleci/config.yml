@@ -72,6 +72,8 @@ workflows:
           context: "Publishing"
       - pleroma:
           context: "Publishing"
+      - retro-aim-server:
+          context: "Publishing"
       - robotframework:
           context: "Publishing"
       - shellcheck:
@@ -205,6 +207,12 @@ jobs:
     steps:
       - make-image:
           workdir: "./pleroma"
+
+  retro-aim-server:
+    executor: build-executor
+    steps:
+      - make-image:
+          workdir: "./retro-aim-server"
 
   robotframework:
     executor: build-executor
