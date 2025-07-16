@@ -75,6 +75,8 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     git clone https://github.com/zsh-users/zsh-autosuggestions /home/diaguser/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/diaguser/.oh-my-zsh/custom/themes/powerlevel10k
 
+RUN bash -c "$(curl -sL https://get-gnmic.openconfig.net)"
+
 WORKDIR /home/diaguser
 
 COPY --chown="10001:10001" container-fs/zshrc .zshrc
