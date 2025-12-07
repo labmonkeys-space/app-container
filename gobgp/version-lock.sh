@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="alpine:3.23.0"
-export GOBGP_VERSION="3.35.0"
+export GOBGP_VERSION="3.36.0"
