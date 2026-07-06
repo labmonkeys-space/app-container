@@ -36,7 +36,7 @@ requests==2.29.0
 robotframework==6.0.2
 robotframework-assertion-engine==1.0.0
 robotframework-browser==16.0.3
-robotframework-databaselibrary==1.2.4
+robotframework-databaselibrary==2.4.1
 robotframework-datadriver==1.7.0
 robotframework-datetime-tz==1.0.6
 robotframework-faker==5.0.0
