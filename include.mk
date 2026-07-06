@@ -90,11 +90,14 @@ hadolint: Dockerfile
 	@echo -e "\033[0;32mDONE\033[0m"
 
 builder-instance: info
-	@if ! docker context inspect "$(BUILDER_INSTANCE)"; then docker context create "$(BUILDER_INSTANCE)"; fi;
-	docker context use "$(BUILDER_INSTANCE)"
+	@# A docker-container driver is required for multi-platform builds; the
+	@# default docker driver only supports a single platform.
+	@docker buildx inspect "$(BUILDER_INSTANCE)" >/dev/null 2>&1 || \
+	  docker buildx create --name "$(BUILDER_INSTANCE)" --driver docker-container --bootstrap
+	docker buildx use "$(BUILDER_INSTANCE)"
 
 oci: Dockerfile builder-instance
-	docker buildx build -o type=docker --platform="$(SINGLE_ARCH)" --tag $(PROJECT_DIR):$(subst /,-,$(SINGLE_ARCH)) .
+	docker buildx build --load --platform="$(SINGLE_ARCH)" --tag $(PROJECT_DIR):$(subst /,-,$(SINGLE_ARCH)) .
 	@mkdir -p ./build
 	docker image save $(PROJECT_DIR) -o ./build/$(PROJECT_DIR)_$(subst /,-,$(SINGLE_ARCH)).oci
 	@echo "Artifact for architecture $(SINGLE_ARCH): ./build/$(PROJECT_DIR)_$(subst /,-,$(SINGLE_ARCH)).oci"
