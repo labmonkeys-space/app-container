@@ -3,7 +3,7 @@
 ###
 
 # hadolint ignore=DL3006
-FROM "golang:1.18-alpine3.16" as builder
+FROM "${BUILDER_IMAGE}" as builder
 
 # hadolint ignore=DL3018, DL3003
 RUN go install github.com/ipchama/dupligator@latest
