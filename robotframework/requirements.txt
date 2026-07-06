@@ -1,7 +1,7 @@
 async-generator==1.10
 attrs==23.1.0
 axe-selenium-python==2.1.6
-Babel==2.12.1
+Babel==2.18.0
 backports.cached-property==1.0.2
 bcrypt==4.0.1
 certifi==2022.12.7
