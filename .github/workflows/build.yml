@@ -25,7 +25,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       - name: Install hadolint
         run: |
           sudo curl -fsSL -o /usr/local/bin/hadolint \
@@ -42,7 +42,7 @@ jobs:
       projects: ${{ steps.select.outputs.projects }}
       any: ${{ steps.select.outputs.any }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           fetch-depth: 0
       - name: Select changed projects
@@ -106,7 +106,7 @@ jobs:
       CONTAINER_REGISTRY_LOGIN: ${{ secrets.CONTAINER_REGISTRY_LOGIN }}
       CONTAINER_REGISTRY_PASS: ${{ secrets.CONTAINER_REGISTRY_PASS }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           fetch-depth: 0   # version-lock.sh runs `git describe`
       - name: Install hadolint
