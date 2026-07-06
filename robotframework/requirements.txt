@@ -4,7 +4,7 @@ axe-selenium-python==2.1.6
 Babel==2.18.0
 backports.cached-property==1.0.2
 bcrypt==5.0.0
-certifi==2022.12.7
+certifi==2026.6.17
 cffi==2.0.0
 charset-normalizer==3.1.0
 cryptography==40.0.2
