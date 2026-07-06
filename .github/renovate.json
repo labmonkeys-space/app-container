@@ -6,6 +6,7 @@
     ":semanticCommits"
   ],
   "labels": ["dependencies"],
+  "commitBody": "Signed-off-by: Ronny Trommer <ronny@no42.org>",
   "packageRules": [
     {
       "description": "Pin GitHub Actions to an immutable SHA (keep the semver comment)",
