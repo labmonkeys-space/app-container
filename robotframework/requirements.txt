@@ -39,7 +39,7 @@ robotframework-browser==16.0.3
 robotframework-databaselibrary==1.2.4
 robotframework-datadriver==1.7.0
 robotframework-datetime-tz==1.0.6
-robotframework-faker==5.0.0
+robotframework-faker==6.0.0
 robotframework-ftplibrary==1.9
 robotframework-imaplibrary2==0.4.6
 robotframework-jsonlibrary==0.5
