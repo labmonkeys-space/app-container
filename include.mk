@@ -88,6 +88,7 @@ builder-instance: info
 
 oci: Dockerfile builder-instance
 	docker buildx build -o type=docker --platform="$(SINGLE_ARCH)" --tag $(PROJECT_DIR):$(subst /,-,$(SINGLE_ARCH)) .
+	@mkdir -p ./build
 	docker image save $(PROJECT_DIR) -o ./build/$(PROJECT_DIR)_$(subst /,-,$(SINGLE_ARCH)).oci
 	@echo "Artifact for architecture $(SINGLE_ARCH): ./build/$(PROJECT_DIR)_$(subst /,-,$(SINGLE_ARCH)).oci"
 

@@ -16,4 +16,4 @@ shellcheck: deps
 
 hadolint: deps
 	@echo -n "Run Hadolint on all Dockerfile templates: "
-	@find . -type f -name 'Dockerfile.tpl' | xargs hadolint
+	@find . -type f -name 'Dockerfile.tpl' | xargs hadolint --failure-threshold error
