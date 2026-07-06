@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="alpine:3.23.0"
 export GOBGP_VERSION="4.1.0"
+
+export PLATFORMS="linux/amd64,linux/arm64"

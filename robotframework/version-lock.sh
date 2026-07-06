@@ -14,3 +14,5 @@ export DATE
 # LANG_PYTHON_3_ALPINE 3.9 pin (still used by sunshine) with a newer interpreter here.
 export BASE_IMAGE="python:3.14.1-alpine3.21"
 export GIT_COMMIT="17d482f2cba1a8735df0a9278ae6e68c500537c1"
+
+export PLATFORMS="linux/amd64,linux/arm64"

@@ -15,3 +15,5 @@ export MAKE_VERSION="4.4.1-r1"
 export GIT_VERSION="2.40.3-r0"
 export OPENSSH_CLIENT_VERSION="9.3_p2-r2"
 export LUNR_EXTENSION_VERSION="1.0.0-alpha.8"
+
+export PLATFORMS="linux/amd64,linux/arm64"

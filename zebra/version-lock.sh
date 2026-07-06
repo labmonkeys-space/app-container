@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
 export QUAGGA_VERSION="1.2.4-r9"
+
+export PLATFORMS="linux/amd64,linux/arm64"

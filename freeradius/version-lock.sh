@@ -13,3 +13,5 @@ export BASE_IMAGE="${OS_ALPINE}"
 export FREERADIUS_VERSION="3.0.26-r8"
 export SQLITE_VERSION="3.45.3-r1"
 export OPENSSL_VERSION="3.3.2-r0"
+
+export PLATFORMS="linux/amd64,linux/arm64"

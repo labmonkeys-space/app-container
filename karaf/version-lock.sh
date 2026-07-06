@@ -12,3 +12,6 @@ export DATE
 export KARAF_HOME="/opt/karaf"
 export BASE_IMAGE="${LANG_JRE_17}"
 export KARAF_VERSION="4.4.6"
+
+# amd64-only until the quay.io/labmonkeys/openjdk base image is rebuilt multi-arch
+export PLATFORMS="linux/amd64"

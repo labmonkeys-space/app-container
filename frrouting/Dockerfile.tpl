@@ -5,6 +5,8 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
+ARG TARGETARCH
+
 RUN apt-get update && \
     apt-get -y install curl \
                        dnsutils \
@@ -32,12 +34,18 @@ RUN apt-get update && \
     mkdir -p /etc/snmp/conf.d && \
     chown -R frr:frr /etc/frr /var/run/frr
 
-# Using s6 to run lldpd and snmpd in the container
+# Using s6 to run lldpd and snmpd in the container. The arch tarball is named
+# x86_64 / aarch64, mapped from TARGETARCH; noarch is architecture-independent.
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
 
-RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
-    tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+RUN case "$TARGETARCH" in \
+      amd64) S6ARCH=x86_64 ;; \
+      arm64) S6ARCH=aarch64 ;; \
+      *) echo "unsupported TARGETARCH=$TARGETARCH" >&2; exit 1 ;; \
+    esac && \
+    curl -fsSLo /tmp/s6-overlay-arch.tar.xz "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6ARCH}.tar.xz" && \
+    tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
+    tar -C / -Jxpf /tmp/s6-overlay-arch.tar.xz
 
 # Add a basic configuration for lldpd, snmpd and pmacctd to the container
 COPY config/s6/services /etc/services.d

@@ -5,7 +5,9 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-ADD "https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_amd64.tar.gz" /tmp/gobgp.tar.gz
+ARG TARGETARCH
+# gobgp release assets are named linux_amd64 / linux_arm64, matching TARGETARCH.
+ADD "https://github.com/osrg/gobgp/releases/download/v${GOBGP_VERSION}/gobgp_${GOBGP_VERSION}_linux_${TARGETARCH}.tar.gz" /tmp/gobgp.tar.gz
 
 RUN tar xzf /tmp/gobgp.tar.gz -C /usr/bin && \
     rm -rf /tmp/gobgp.tar.gz && \

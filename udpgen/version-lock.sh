@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_UBUNTU}"
 export GIT_COMMIT="500967216ddad627480b7d204411a3ec6b1ec4b0"
+
+export PLATFORMS="linux/amd64,linux/arm64"

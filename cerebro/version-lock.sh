@@ -12,3 +12,6 @@ export DATE
 export BASE_IMAGE="${LANG_JRE_11}"
 export CEREBRO_VERSION="0.9.4"
 export CEREBRO_HOME="/opt/cerebro"
+
+# amd64-only until the quay.io/labmonkeys/openjdk base image is rebuilt multi-arch
+export PLATFORMS="linux/amd64"

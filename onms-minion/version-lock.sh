@@ -8,3 +8,5 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="docker.io/opennms/minion:33.1.2"
+
+export PLATFORMS="linux/amd64,linux/arm64"

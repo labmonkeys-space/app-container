@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_UBUNTU}"
 export VPP_VERSION="24.10-release"
+
+export PLATFORMS="linux/amd64,linux/arm64"

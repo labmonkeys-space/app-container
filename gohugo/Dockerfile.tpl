@@ -5,7 +5,9 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-ADD "https://github.com/gohugoio/hugo/releases/download/v${GOHUGO_VERSION}/hugo_${GOHUGO_VERSION}_linux-amd64.tar.gz" /tmp/gohugo.tar.gz
+ARG TARGETARCH
+# hugo release assets are named linux-amd64 / linux-arm64, matching TARGETARCH.
+ADD "https://github.com/gohugoio/hugo/releases/download/v${GOHUGO_VERSION}/hugo_${GOHUGO_VERSION}_linux-${TARGETARCH}.tar.gz" /tmp/gohugo.tar.gz
 
 RUN tar xzf /tmp/gohugo.tar.gz -C /usr/bin && \
     rm -rf /tmp/gohugo.tar.gz && \

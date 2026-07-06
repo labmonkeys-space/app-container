@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="alpine:3.21.2"
 export RETRO_AIM_SERVER_VERSION="0.15.3"
+
+export PLATFORMS="linux/amd64,linux/arm64"

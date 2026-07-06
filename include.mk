@@ -1,7 +1,7 @@
 ###
 # Makefile to build and release Docker images used in our CI/CD build pipeline and deployments
 ###
-.PHONY: help deps info shellcheck hadolint builder-instance oci login scan publish publish-force clean
+.PHONY: help deps info shellcheck hadolint builder-instance oci login scan publish publish-force sign clean
 
 .DEFAULT_GOAL := oci
 
@@ -14,7 +14,10 @@ CONTAINER_REGISTRY_PASS  ?=
 BUILD_VERSION_SUFFIX     ?=
 RELEASE_TAG              ?= $(shell cat release.tag)$(BUILD_VERSION_SUFFIX)
 SINGLE_ARCH              ?= linux/amd64
-MULTI_ARCH               ?= linux/amd64
+# Platforms this project supports, declared as PLATFORMS in its version-lock.sh.
+# Defaults to linux/amd64 when the project does not declare it.
+PLATFORMS                ?= $(shell bash -c '. ./version-lock.sh >/dev/null 2>&1; printf "%s" "$${PLATFORMS:-linux/amd64}"')
+MULTI_ARCH               ?= $(PLATFORMS)
 BUILDER_INSTANCE         ?= builder-$(PROJECT_DIR)
 DOCKER_TAG               := $(CONTAINER_REGISTRY)/$(CONTAINER_REGISTRY_REPO)/$(RELEASE_TAG)
 
@@ -65,6 +68,7 @@ info: deps
 	@echo ""
 	@docker --version
 	@echo "Image Tag: $(DOCKER_TAG)"
+	@echo "Platforms: $(MULTI_ARCH)"
 	@echo ""
 
 shellcheck: deps
@@ -74,7 +78,10 @@ shellcheck: deps
 
 Dockerfile: shellcheck info
 	@echo -n "Generating Dockerfile: "
-	@source ./version-lock.sh && envsubst < "Dockerfile.tpl" > "Dockerfile"
+	@# Only substitute the variables version-lock.sh / base_images.sh export, so
+	@# Docker build args like $$TARGETARCH (and the image's own $$PATH) survive.
+	@allow="$$(sed -nE 's/^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*).*/$$\1/p' version-lock.sh ../base_images.sh | sort -u | tr '\n' ' ')"; \
+	 source ./version-lock.sh && envsubst "$$allow" < "Dockerfile.tpl" > "Dockerfile"
 	@echo -e "\033[0;32mDONE\033[0m"
 
 hadolint: Dockerfile
@@ -113,6 +120,14 @@ publish-force: info Dockerfile builder-instance login
 	@echo ""
 	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} == y ]
 	docker buildx build -o type=registry --platform="$(MULTI_ARCH)" --tag "$(DOCKER_TAG)" .
+
+sign: login
+	@command -v cosign >/dev/null || { echo -e "\033[0;31mFAIL\033[0m - cosign not found."; exit 1; }
+	@echo -n "Sign $(DOCKER_TAG) with cosign (keyless): "
+	@tag="$(DOCKER_TAG)"; \
+	 digest="$$(docker buildx imagetools inspect "$$tag" --format '{{.Manifest.Digest}}')"; \
+	 cosign sign --yes "$${tag%:*}@$${digest}"
+	@echo -e "\033[0;32mDONE\033[0m"
 
 clean: deps
 	@echo -n "Remove generated Dockerfile: "
