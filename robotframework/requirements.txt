@@ -16,7 +16,7 @@ grpcio==1.54.0
 grpcio-tools==1.54.0
 h11==0.14.0
 idna==3.4
-iniconfig==2.0.0
+iniconfig==2.3.0
 natsort==8.3.1
 outcome==1.2.0
 overrides==7.3.1
