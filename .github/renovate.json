@@ -12,6 +12,12 @@
       "description": "Pin GitHub Actions to an immutable SHA (keep the semver comment)",
       "matchManagers": ["github-actions"],
       "pinDigests": true
+    },
+    {
+      "description": "grpcio, grpcio-tools and protobuf are hard-pinned by robotframework-browser (e.g. grpcio==1.81.0, protobuf==6.33.6). Let it drive their versions instead of proposing independent bumps that cannot resolve.",
+      "matchFileNames": ["robotframework/requirements.txt"],
+      "matchPackageNames": ["grpcio", "grpcio-tools", "protobuf"],
+      "enabled": false
     }
   ],
   "customManagers": [
