@@ -33,7 +33,7 @@ python-dateutil==2.8.2
 pytz==2023.3
 PyYAML==6.0.2
 requests==2.29.0
-robotframework==6.0.2
+robotframework==7.4.2
 robotframework-assertion-engine==1.0.0
 robotframework-browser==16.0.3
 robotframework-databaselibrary==1.2.4
