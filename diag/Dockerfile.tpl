@@ -7,6 +7,7 @@ FROM "${BASE_IMAGE}"
 ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 /bin/tini
 ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz /tmp/ngrok.tgz
 ADD https://github.com/prometheus-community/pro-bing/releases/download/v0.3.0/ping_0.3.0_linux_amd64.tar.gz /tmp/ping.tar.gz
+ADD https://github.com/openconfig/gnmic/releases/download/v${GNMIC_VERSION}/gnmic_${GNMIC_VERSION}_Linux_x86_64.tar.gz /tmp/gnmic.tar.gz
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -61,7 +62,8 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     tar xzf /tmp/ping.tar.gz -C /tmp --strip-components=1 && \
     mv /tmp/ping /usr/bin/gping && \
     tar xzf /tmp/ngrok.tgz -C /usr/bin && \
-    chmod +rx /usr/bin/ngrok /bin/tini && \
+    tar xzf /tmp/gnmic.tar.gz -C /usr/bin gnmic && \
+    chmod +rx /usr/bin/ngrok /usr/bin/gnmic /bin/tini && \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
     chsh -s $(which zsh)
 
@@ -74,8 +76,6 @@ USER 10001
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
     git clone https://github.com/zsh-users/zsh-autosuggestions /home/diaguser/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/diaguser/.oh-my-zsh/custom/themes/powerlevel10k
-
-RUN bash -c "$(curl -sL https://get-gnmic.openconfig.net)"
 
 WORKDIR /home/diaguser
 
