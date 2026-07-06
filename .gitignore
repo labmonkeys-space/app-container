@@ -4,3 +4,14 @@ Dockerfile
 *.oci
 *.iml
 
+# Bazel local cache symlinks (cerebro)
+bazel-bin
+bazel-cerebro
+bazel-out
+bazel-testlogs
+
+# AI tools
+_bmad-output/
+_bmad/
+openspec/
+

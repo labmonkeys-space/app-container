@@ -24,5 +24,4 @@ LABEL org.opencontainers.image.created="${DATE}" \
       org.opencontainers.image.revision="${VCS_REVISION}" \
       org.opencontainers.image.vendor="Labmonkeys Space" \
       org.opencontainers.image.authors="ronny@no42.org" \
-      org.opencontainers.image.licenses="MIT" \
-      io.artifacthub.package.readme-url="https://github.com/labmonkeys-space/app-container/blob/main/freeradius/README.md"
+      org.opencontainers.image.licenses="MIT"

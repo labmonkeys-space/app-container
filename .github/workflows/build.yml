@@ -1,0 +1,125 @@
+# Copyright 2026 Ronny Trommer <ronny@no42.org>
+# SPDX-License-Identifier: MIT
+---
+# Build and publish the container images in this monorepo.
+#
+# The project list is discovered dynamically from the directories that contain
+# a Dockerfile.tpl, so adding a new image requires no change to this workflow.
+# Only projects whose files changed are built; a change to a shared file
+# (base_images.sh, include.mk, root Makefile or this workflow) rebuilds all.
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - name: Install hadolint
+        run: |
+          sudo curl -fsSL -o /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+          sudo chmod +x /usr/local/bin/hadolint
+      - name: shellcheck
+        run: make shellcheck
+      - name: hadolint
+        run: make hadolint
+
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.select.outputs.projects }}
+      any: ${{ steps.select.outputs.any }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 0
+      - name: Select changed projects
+        id: select
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          mapfile -t all < <(for d in */Dockerfile.tpl; do dirname "$d"; done | sort -u)
+
+          if [[ "${EVENT_NAME}" == "pull_request" ]]; then
+            range="${BASE_SHA}...${HEAD_SHA}"
+          elif [[ -z "${BEFORE_SHA}" || "${BEFORE_SHA}" =~ ^0+$ ]]; then
+            range=""   # new branch / first push: build everything
+          else
+            range="${BEFORE_SHA}..${AFTER_SHA}"
+          fi
+
+          if [[ -z "${range}" ]]; then
+            changed="__ALL__"
+          else
+            changed="$(git diff --name-only "${range}" || echo __ALL__)"
+          fi
+
+          if [[ "${changed}" == "__ALL__" ]] || \
+             grep -qE '^(base_images\.sh|include\.mk|Makefile|\.github/)' <<<"${changed}"; then
+            selected=("${all[@]}")
+          else
+            selected=()
+            for p in "${all[@]}"; do
+              grep -q "^${p}/" <<<"${changed}" && selected+=("${p}")
+            done
+          fi
+
+          if [[ ${#selected[@]} -eq 0 ]]; then
+            echo "projects=[]" >> "${GITHUB_OUTPUT}"
+            echo "any=false" >> "${GITHUB_OUTPUT}"
+          else
+            json="$(printf '%s\n' "${selected[@]}" | jq -R . | jq -cs .)"
+            echo "projects=${json}" >> "${GITHUB_OUTPUT}"
+            echo "any=true" >> "${GITHUB_OUTPUT}"
+          fi
+          echo "Selected: ${selected[*]:-<none>}"
+
+  build:
+    needs: discover
+    if: needs.discover.outputs.any == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.discover.outputs.projects) }}
+    env:
+      CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
+      CONTAINER_REGISTRY_REPO: ${{ secrets.CONTAINER_REGISTRY_REPO }}
+      CONTAINER_REGISTRY_LOGIN: ${{ secrets.CONTAINER_REGISTRY_LOGIN }}
+      CONTAINER_REGISTRY_PASS: ${{ secrets.CONTAINER_REGISTRY_PASS }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 0   # version-lock.sh runs `git describe`
+      - name: Install hadolint
+        run: |
+          sudo curl -fsSL -o /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+          sudo chmod +x /usr/local/bin/hadolint
+      - name: Build (branch/PR) or publish (main)
+        working-directory: ./${{ matrix.project }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+            make publish BUILD_VERSION_SUFFIX=".b${{ github.run_number }}"
+          else
+            make oci
+          fi
