@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Base images as dependencies
-export OS_UBUNTU="ubuntu:noble-20250714"
+export OS_UBUNTU="ubuntu:noble-20260610"
 export OS_ALPINE="alpine:3.24"
 export OS_DEBIAN="debian:bookworm-20250203-slim"
 export APP_ANTORA="antora/antora:3.1.15"
