@@ -10,4 +10,4 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
-export NETSNMP_VERSION="5.9.4-r1"
+export NETSNMP_VERSION="5.9.5.2-r0"
