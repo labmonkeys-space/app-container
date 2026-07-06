@@ -32,7 +32,7 @@ pytest==7.3.1
 python-dateutil==2.8.2
 pytz==2023.3
 PyYAML==6.0.2
-requests==2.29.0
+requests==2.34.2
 robotframework==6.0.2
 robotframework-assertion-engine==1.0.0
 robotframework-browser==16.0.3
