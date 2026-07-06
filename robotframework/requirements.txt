@@ -15,7 +15,7 @@ future==1.0.0
 grpcio==1.54.0
 grpcio-tools==1.54.0
 h11==0.14.0
-idna==3.4
+idna==3.18
 iniconfig==2.0.0
 natsort==8.4.0
 outcome==1.2.0
