@@ -13,3 +13,5 @@ export BASE_IMAGE_BUILD="${OS_ALPINE}"
 export BASE_IMAGE="${OS_ALPINE}"
 export SHELLCHECK_VERSION="0.10.0-r1"
 export BASH_VERSION="5.2.26-r0"
+
+export PLATFORMS="linux/amd64,linux/arm64"

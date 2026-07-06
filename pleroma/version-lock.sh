@@ -12,3 +12,5 @@ export DATE
 export BASE_IMAGE_BUILD="${LANG_ELIXIR}"
 export BASE_IMAGE="alpine:3.21.3"
 export PLEROMA_VERSION="v2.9.1"
+
+export PLATFORMS="linux/amd64,linux/arm64"

@@ -15,3 +15,5 @@ export RUBY_VERSION="3.3.3-r0"
 export ASCIIDOCTOR_VERSION="2.0.23"
 export NPM_VERSION="10.8.0-r0"
 
+
+export PLATFORMS="linux/amd64,linux/arm64"

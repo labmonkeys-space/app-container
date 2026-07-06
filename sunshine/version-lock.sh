@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${LANG_PYTHON_3_ALPINE}"
 export GIT_COMMIT="c84bd379574d8685e39460420537f52be692d103"
+
+export PLATFORMS="linux/amd64,linux/arm64"

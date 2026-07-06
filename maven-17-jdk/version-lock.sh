@@ -11,3 +11,6 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${LANG_JDK_17}"
 export MAVEN_VERSION="3.8.7-2"
+
+# amd64-only until the quay.io/labmonkeys/openjdk base image is rebuilt multi-arch
+export PLATFORMS="linux/amd64"

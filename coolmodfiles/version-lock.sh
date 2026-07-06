@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${LANG_NODE_16}"
 export GIT_COMMIT="3f85684c233df6b51407d3feb4885770ff70fc87"
+
+export PLATFORMS="linux/amd64,linux/arm64"

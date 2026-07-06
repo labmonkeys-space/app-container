@@ -4,10 +4,7 @@
 
 FROM "${BASE_IMAGE}"
 
-ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini-amd64 /bin/tini
-ADD https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz /tmp/ngrok.tgz
-ADD https://github.com/prometheus-community/pro-bing/releases/download/v0.3.0/ping_0.3.0_linux_amd64.tar.gz /tmp/ping.tar.gz
-ADD https://github.com/openconfig/gnmic/releases/download/v${GNMIC_VERSION}/gnmic_${GNMIC_VERSION}_Linux_x86_64.tar.gz /tmp/gnmic.tar.gz
+ARG TARGETARCH
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -59,6 +56,15 @@ RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates
     zsh && \
     rm -rf /var/lib/apt/lists/* && \
     echo "${DEBIAN_FRONTEND}" && \
+    case "$TARGETARCH" in \
+      amd64) TINIARCH=amd64; NGROKARCH=amd64; PINGARCH=amd64; GNMICARCH=x86_64 ;; \
+      arm64) TINIARCH=arm64; NGROKARCH=arm64; PINGARCH=arm64; GNMICARCH=aarch64 ;; \
+      *) echo "unsupported TARGETARCH=$TARGETARCH" >&2; exit 1 ;; \
+    esac && \
+    curl -fsSLo /bin/tini "https://github.com/krallin/tini/releases/download/v0.19.0/tini-${TINIARCH}" && \
+    curl -fsSLo /tmp/ngrok.tgz "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-${NGROKARCH}.tgz" && \
+    curl -fsSLo /tmp/ping.tar.gz "https://github.com/prometheus-community/pro-bing/releases/download/v0.3.0/ping_0.3.0_linux_${PINGARCH}.tar.gz" && \
+    curl -fsSLo /tmp/gnmic.tar.gz "https://github.com/openconfig/gnmic/releases/download/v${GNMIC_VERSION}/gnmic_${GNMIC_VERSION}_Linux_${GNMICARCH}.tar.gz" && \
     tar xzf /tmp/ping.tar.gz -C /tmp --strip-components=1 && \
     mv /tmp/ping /usr/bin/gping && \
     tar xzf /tmp/ngrok.tgz -C /usr/bin && \

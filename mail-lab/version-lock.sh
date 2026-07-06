@@ -15,3 +15,5 @@ export INETUTILS_SYSLOGD_VERSION="2:2.5-3ubuntu4"
 export DOVECOT_IMAPD_VERSION="1:2.3.21+dfsg1-2ubuntu6"
 export POSTFIX_VERSION="3.8.6-1build2"
 export WHOIS_VERSION="5.5.22"
+
+export PLATFORMS="linux/amd64,linux/arm64"

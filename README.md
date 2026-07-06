@@ -84,11 +84,43 @@ a `Dockerfile.tpl`, so Renovate can keep them current.
   shared file (`base_images.sh`, `include.mk`, root `Makefile`, or the workflow)
   rebuilds every project.
 - **build** — a matrix over the changed projects. Pull requests run `make oci`
-  (build only); pushes to `main` run `make publish` with a `.b<run-number>`
-  suffix.
+  (build only); pushes to `main` run `make publish` (multi-arch, per the
+  project's `PLATFORMS`) followed by `make sign`, with a `.b<run-number>` suffix.
 
-Registry credentials are provided as repository secrets: `CONTAINER_REGISTRY`,
-`CONTAINER_REGISTRY_REPO`, `CONTAINER_REGISTRY_LOGIN`, `CONTAINER_REGISTRY_PASS`.
+Registry credentials are provided as repository secrets: `QUAY_USERNAME`,
+`QUAY_PASSWORD`, and `QUAY_LABMONKEYS_ORG` (the registry host `quay.io` is a
+literal in the workflow). The build job requests `id-token: write` so cosign can
+sign keylessly via GitHub OIDC.
+
+## Multi-architecture builds
+
+Each project declares the platforms it supports via `PLATFORMS` in its
+`version-lock.sh` (default `linux/amd64`):
+
+```sh
+export PLATFORMS="linux/amd64,linux/arm64"
+```
+
+`make publish` builds and pushes exactly those platforms as a single
+multi-architecture image index. Images that hardcode an `amd64` artifact select
+the right asset from the Docker build arg `$TARGETARCH`; only the variables
+`version-lock.sh` exports are substituted at render time, so `$TARGETARCH`
+survives into the generated `Dockerfile`.
+
+## Image signatures
+
+Published images are signed with [cosign](https://docs.sigstore.dev/) using
+keyless signing (no stored key) — the signer identity is the GitHub Actions
+workflow. Verify a published image with:
+
+```bash
+cosign verify \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  --certificate-identity-regexp='^https://github.com/labmonkeys-space/app-container/' \
+  quay.io/labmonkeys/<project>:<tag>
+```
+
+A single signature over the image index covers all its architectures.
 
 ## Dependency updates
 

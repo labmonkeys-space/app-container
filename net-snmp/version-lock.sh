@@ -11,3 +11,5 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
 export NETSNMP_VERSION="5.9.5.2-r0"
+
+export PLATFORMS="linux/amd64,linux/arm64"

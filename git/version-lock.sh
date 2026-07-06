@@ -13,3 +13,5 @@ export BASE_IMAGE="${OS_ALPINE}"
 export BASH_VERSION="5.2.26-r0"
 export GIT_VERSION="2.45.2-r0"
 export GITHUB_CLI_VERSION="2.47.0-r4"
+
+export PLATFORMS="linux/amd64,linux/arm64"

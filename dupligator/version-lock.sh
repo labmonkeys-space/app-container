@@ -12,3 +12,5 @@ export DATE
 export BASE_IMAGE="${OS_ALPINE}"
 export BUILDER_IMAGE="${LANG_GO_ALPINE}"
 export GIT_COMMIT="6721d9941eb2674aef14249e2fc6dcecbfe46163"
+
+export PLATFORMS="linux/amd64,linux/arm64"

@@ -11,3 +11,6 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE="${OS_ALPINE}"
 export GOBETWEEN_VERSION="0.8.0"
+
+# amd64-only: upstream ships no arm64 release binary
+export PLATFORMS="linux/amd64"
