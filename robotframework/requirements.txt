@@ -11,7 +11,7 @@ cryptography==40.0.2
 docutils==0.19
 exceptiongroup==1.1.1
 Faker==18.6.0
-future==0.18.3
+future==1.0.0
 grpcio==1.54.0
 grpcio-tools==1.54.0
 h11==0.14.0
