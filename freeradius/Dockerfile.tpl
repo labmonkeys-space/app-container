@@ -5,8 +5,8 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk add --no-cache freeradius="${FREERADIUS_VERSION}" freeradius-sqlite="${FREERADIUS_VERSION}" freeradius-radclient="${FREERADIUS_VERSION}" freeradius-rest="${FREERADIUS_VERSION}" \
-                   sqlite="${SQLITE_VERSION}" openssl-dev="${OPENSSL_VERSION}" && \
+RUN apk add --no-cache freeradius freeradius-sqlite freeradius-radclient freeradius-rest \
+                   sqlite openssl-dev && \
                    chgrp radius /usr/sbin/radiusd && \
                    chmod g+rwx /usr/sbin/radiusd
 

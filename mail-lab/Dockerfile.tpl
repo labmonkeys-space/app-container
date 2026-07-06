@@ -19,10 +19,10 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY
 # hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get -y install --no-install-recommends xz-utils \
-                                               inetutils-syslogd="${INETUTILS_SYSLOGD_VERSION}" \
-                                               postfix="${POSTFIX_VERSION}" \
-                                               dovecot-imapd="${DOVECOT_IMAPD_VERSION}" \
-                                               whois="${WHOIS_VERSION}" && \
+                                               inetutils-syslogd \
+                                               postfix \
+                                               dovecot-imapd \
+                                               whois && \
     tar -xf /tmp/s6-overlay-x86_64.tar.xz -C / && \
     rm -rf /var/lib/apt/lists/* && \
     rm /tmp/*.tar.xz

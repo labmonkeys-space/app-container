@@ -5,7 +5,7 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE_BUILD}" as alpine
 
-RUN apk add --no-cache bash="${BASH_VERSION}" shellcheck="${SHELLCHECK_VERSION}"
+RUN apk add --no-cache bash shellcheck
 
 ENTRYPOINT [ "/bin/bash" ]
 

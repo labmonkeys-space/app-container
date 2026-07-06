@@ -5,7 +5,7 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add net-snmp="${NETSNMP_VERSION}" lldpd="${LLDPD_VERSION}" bash="${BASH_VERSION}" && \
+RUN apk --no-cache add net-snmp lldpd bash && \
     mkdir -p /etc/snmp/conf.d
 
 COPY config/snmpd.conf /etc/snmp/snmpd.conf

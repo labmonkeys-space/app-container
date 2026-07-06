@@ -5,7 +5,7 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add quagga="${QUAGGA_VERSION}" iproute2 && \
+RUN apk --no-cache add quagga iproute2 && \
     mkdir -p /etc/quagga
 
 ENTRYPOINT ["/usr/sbin/zebra"]

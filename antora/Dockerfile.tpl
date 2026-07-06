@@ -5,10 +5,10 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add bash="${BASH_VERSION}" \
-                       make="${MAKE_VERSION}" \
-                       git="${GIT_VERSION}" \
-                       openssh-client="${OPENSSH_CLIENT_VERSION}" && \
+RUN apk --no-cache add bash \
+                       make \
+                       git \
+                       openssh-client && \
     yarn global add --ignore-optional --silent "@antora/lunr-extension@${LUNR_EXTENSION_VERSION}"
 
 LABEL org.opencontainers.image.created="${DATE}" \

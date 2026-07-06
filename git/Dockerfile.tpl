@@ -5,7 +5,7 @@
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}"
 
-RUN apk --no-cache add bash="${BASH_VERSION}" git="${GIT_VERSION}" github-cli="${GITHUB_CLI_VERSION}" && \
+RUN apk --no-cache add bash git github-cli && \
     mkdir /data && \
     chmod -R 777 /data
 
