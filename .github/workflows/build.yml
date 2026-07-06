@@ -118,8 +118,11 @@ jobs:
         working-directory: ./${{ matrix.project }}
         run: |
           set -euo pipefail
-          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+          if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" && -n "${CONTAINER_REGISTRY_LOGIN}" ]]; then
             make publish BUILD_VERSION_SUFFIX=".b${{ github.run_number }}"
           else
+            if [[ "${{ github.event_name }}" == "push" && "${{ github.ref }}" == "refs/heads/main" ]]; then
+              echo "::notice::CONTAINER_REGISTRY_* secrets not configured — building image only, skipping publish."
+            fi
             make oci
           fi

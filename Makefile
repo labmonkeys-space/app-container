@@ -12,7 +12,7 @@ deps:
 
 shellcheck: deps
 	@echo -n "Run shellcheck for all projects: "
-	@find . -type f -name '*.sh' | xargs shellcheck --external-sources -e SC2034,SC2155
+	@find . -type f -name '*.sh' | xargs shellcheck --external-sources --source-path=SCRIPTDIR -e SC2034,SC2155
 
 hadolint: deps
 	@echo -n "Run Hadolint on all Dockerfile templates: "
