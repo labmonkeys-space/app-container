@@ -10,7 +10,7 @@ export VCS_SOURCE
 export VCS_REVISION
 export DATE
 export BASE_IMAGE_BUILD="${LANG_ELIXIR}"
-export BASE_IMAGE="alpine:3.21.3"
-export PLEROMA_VERSION="v2.9.1"
+export BASE_IMAGE="alpine:3.20.9"
+export PLEROMA_VERSION="v2.10.2"
 
 export PLATFORMS="linux/amd64,linux/arm64"

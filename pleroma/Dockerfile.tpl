@@ -9,13 +9,11 @@ ENV MIX_ENV=prod
 ENV VIX_COMPILATION_MODE=PLATFORM_PROVIDED_LIBVIPS
 
 RUN apk add --no-cache git gcc g++ musl-dev make cmake file-dev vips-dev && \
-    git clone -b develop https://git.pleroma.social/pleroma/pleroma.git /usr/src/pleroma
+    git clone -b ${PLEROMA_VERSION} --depth 1 https://git.pleroma.social/pleroma/pleroma.git /usr/src/pleroma
 
 WORKDIR /usr/src/pleroma
 
-RUN git checkout ${PLEROMA_VERSION}
-
-RUN echo "import Mix.Config" > config/prod.secret.exs && \
+RUN echo "import Config" > config/prod.secret.exs && \
     mix local.hex --force && \
     mix local.rebar --force && \
     mix deps.get --only prod && \
@@ -37,7 +35,7 @@ RUN apk add --no-cache exiftool ffmpeg vips libmagic ncurses postgresql-client &
     chown -R pleroma /var/lib/pleroma
 
 COPY --from=build --chown=pleroma:0 /release /pleroma
-COPY --from=build --chown=pleroma:0 /usr/src/pleroma/config/docker.exs /etc/pleroma/config.exs
+COPY --from=build --chown=pleroma:0 --chmod=640 /usr/src/pleroma/config/docker.exs /etc/pleroma/config.exs
 COPY --from=build --chown=pleroma:0 /usr/src/pleroma/docker-entrypoint.sh /pleroma
 
 WORKDIR /pleroma
