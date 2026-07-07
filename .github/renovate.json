@@ -29,6 +29,25 @@
         "export\\s+\\w+=\"(?<depName>[^:\"@]+):(?<currentValue>[^\"@]+)\""
       ],
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "NetBox base image pinned as a shell export in netbox/version-lock.sh",
+      "managerFilePatterns": ["/^netbox/version-lock\\.sh$/"],
+      "matchStrings": [
+        "BASE_IMAGE=\"(?<depName>[^:\"@]+):(?<currentValue>[^\"@]+)\""
+      ],
+      "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "netbox-opennms-plugin pinned to a Git tag in netbox/version-lock.sh",
+      "managerFilePatterns": ["/^netbox/version-lock\\.sh$/"],
+      "matchStrings": [
+        "PLUGIN_VERSION=\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "no42-org/netbox-opennms-plugin"
     }
   ]
 }
