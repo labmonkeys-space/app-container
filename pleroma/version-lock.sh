@@ -13,4 +13,6 @@ export BASE_IMAGE_BUILD="${LANG_ELIXIR}"
 export BASE_IMAGE="alpine:3.20.9"
 export PLEROMA_VERSION="v2.10.2"
 
-export PLATFORMS="linux/amd64,linux/arm64"
+# arm64 disabled: the Elixir/Erlang `mix release` hangs indefinitely under
+# QEMU emulation on amd64 runners, exceeding the 6h CI ceiling.
+export PLATFORMS="linux/amd64"
