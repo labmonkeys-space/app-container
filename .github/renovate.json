@@ -41,13 +41,13 @@
     },
     {
       "customType": "regex",
-      "description": "netbox-opennms-plugin pinned to a Git tag in netbox/version-lock.sh",
+      "description": "netbox-opennms-plugin pinned to a PyPI release in netbox/version-lock.sh",
       "managerFilePatterns": ["/^netbox/version-lock\\.sh$/"],
       "matchStrings": [
         "PLUGIN_VERSION=\"(?<currentValue>[^\"]+)\""
       ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "no42-org/netbox-opennms-plugin"
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "netbox-opennms-plugin"
     }
   ]
 }

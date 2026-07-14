@@ -5,19 +5,15 @@
 ###
 
 ###
-# Build stage: the NetBox runtime image ships no git, so add it only here to
-# install our plugin (and its dependencies) from a pinned Git tag into the
-# NetBox virtualenv. Nothing from this stage besides the populated venv is kept.
+# Build stage: install our plugin (and its dependencies) from a pinned PyPI
+# release into the NetBox virtualenv. Nothing from this stage besides the
+# populated venv is kept.
 ###
 # hadolint ignore=DL3006
 FROM "${BASE_IMAGE}" AS build
 
-# hadolint ignore=DL3008
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends git && \
-    rm -rf /var/lib/apt/lists/* && \
-    /usr/local/bin/uv pip install --no-cache --python /opt/netbox/venv/bin/python \
-      "git+https://github.com/no42-org/netbox-opennms-plugin@${PLUGIN_VERSION}"
+RUN /usr/local/bin/uv pip install --no-cache --python /opt/netbox/venv/bin/python \
+      "netbox-opennms-plugin==${PLUGIN_VERSION}"
 
 ###
 # Runtime image: same NetBox base with the plugin-populated virtualenv copied in.
