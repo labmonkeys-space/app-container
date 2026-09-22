@@ -19,7 +19,8 @@ app-container/
 │   └── build/              # Local OCI build artifacts (git-ignored)
 └── .github/
     ├── workflows/build.yml # CI: lint, discover changed projects, build/publish
-    └── renovate.json       # Automated base-image + GitHub Actions updates
+    ├── workflows/renovate.yml # Scheduled self-hosted Renovate run
+    └── renovate.json       # What Renovate tracks and how
 ```
 
 The `Dockerfile` in each project is **generated** from `Dockerfile.tpl` by
@@ -124,10 +125,16 @@ A single signature over the image index covers all its architectures.
 
 ## Dependency updates
 
-`.github/renovate.json` keeps dependencies current:
+`.github/workflows/renovate.yml` runs self-hosted Renovate daily and on manual dispatch.
+It needs a `RENOVATE_TOKEN` repository secret (a personal access token with repo and workflow scope).
+`.github/renovate.json` defines what Renovate tracks:
 
-- Base images pinned in `base_images.sh` (via a custom regex manager).
+- Base images pinned in `base_images.sh` and in each project's `version-lock.sh` (custom regex managers).
 - GitHub Actions, pinned to immutable SHAs with the semver retained in a comment.
+- Python packages in `robotframework/requirements.txt`.
+
+`hexpm/elixir` is excluded because Docker Hub cannot list its tags (about one million).
+Bump it by hand in `base_images.sh`.
 
 ## License
 
