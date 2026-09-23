@@ -9,7 +9,7 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-export BASE_IMAGE="alpine:3.23.0"
+export BASE_IMAGE="alpine:3.24.2"
 export GOBGP_VERSION="4.1.0"
 
 export PLATFORMS="linux/amd64,linux/arm64"
