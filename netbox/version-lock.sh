@@ -18,6 +18,6 @@ export BASE_IMAGE="netboxcommunity/netbox:v4.6.7"
 
 # netbox-opennms-plugin, pinned to a PyPI release. Installed into the NetBox
 # virtualenv at build time; tracked by Renovate (pypi).
-export PLUGIN_VERSION="0.0.9"
+export PLUGIN_VERSION="0.0.11"
 
 export PLATFORMS="linux/amd64,linux/arm64"
