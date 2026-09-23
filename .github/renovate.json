@@ -38,6 +38,14 @@
       "versioning": "regex:^(?<compatibility>(?:jdk|jre)-)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.b(?<build>\\d+)$"
     },
     {
+      "description": "fd.io publishes vpp packages only for Ubuntu noble and jammy. Keep vpp on noble until upstream supports a newer release.",
+      "matchFileNames": ["vpp/version-lock.sh"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ubuntu"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "description": "base_images.sh pins one openjdk image per major on purpose (LANG_JDK_11, LANG_JDK_17). Do not propose cross-major jumps.",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["quay.io/labmonkeys/openjdk"],

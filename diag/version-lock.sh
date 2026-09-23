@@ -6,7 +6,7 @@ source ../base_images.sh
 export VCS_SOURCE="$(git remote get-url --push origin)"
 export VCS_REVISION="$(git describe --always)"
 export BASE_IMAGE="${OS_UBUNTU}"
-export CA_CERT_VERSION="20240203"
+export CA_CERT_VERSION="20260601~26.04.1"
 export GNMIC_VERSION="0.46.0"
 
 export PLATFORMS="linux/amd64,linux/arm64"

@@ -29,7 +29,7 @@ RUN git checkout -b build ${GIT_COMMIT}
 
 WORKDIR /root/udpgen/build
 
-RUN cmake .. && \
+RUN cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .. && \
     make
 
 ######
