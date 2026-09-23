@@ -18,6 +18,31 @@
       "matchFileNames": ["robotframework/requirements.txt"],
       "matchPackageNames": ["grpcio", "grpcio-tools", "protobuf"],
       "enabled": false
+    },
+    {
+      "description": "hexpm/elixir has about one million tags on Docker Hub. The registry tag listing times out (HTTP 504) and Renovate aborts the whole run on a registry 5xx. Bump it by hand in base_images.sh.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["hexpm/elixir"],
+      "enabled": false
+    },
+    {
+      "description": "debian uses <codename>-<YYYYMMDD>-slim tags, which docker versioning cannot parse. Track the date within the same codename.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["debian"],
+      "versioning": "regex:^(?<compatibility>[a-z]+)-(?<major>\\d{4})(?<minor>\\d{2})(?<patch>\\d{2})-slim$"
+    },
+    {
+      "description": "quay.io/labmonkeys images use <jdk|jre>-X.Y.Z.bNNN or X.Y.Z.bNNN tags, which docker versioning cannot parse.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/labmonkeys/**"],
+      "versioning": "regex:^(?<compatibility>(?:jdk|jre)-)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.b(?<build>\\d+)$"
+    },
+    {
+      "description": "base_images.sh pins one openjdk image per major on purpose (LANG_JDK_11, LANG_JDK_17). Do not propose cross-major jumps.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/labmonkeys/openjdk"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
     }
   ],
   "customManagers": [
@@ -32,10 +57,10 @@
     },
     {
       "customType": "regex",
-      "description": "NetBox base image pinned as a shell export in netbox/version-lock.sh",
-      "managerFilePatterns": ["/^netbox/version-lock\\.sh$/"],
+      "description": "Per-project base image pinned as a shell export in <project>/version-lock.sh. ${VAR} references into base_images.sh are skipped.",
+      "managerFilePatterns": ["/(^|/)version-lock\\.sh$/"],
       "matchStrings": [
-        "BASE_IMAGE=\"(?<depName>[^:\"@]+):(?<currentValue>[^\"@]+)\""
+        "export\\s+BASE_IMAGE(?:_BUILD)?=\"(?<depName>[^:\"@$]+):(?<currentValue>[^\"@]+)\""
       ],
       "datasourceTemplate": "docker"
     },
