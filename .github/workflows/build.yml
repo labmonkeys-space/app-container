@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       - name: Install hadolint
@@ -37,7 +37,7 @@ jobs:
         run: make hadolint
 
   discover:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       projects: ${{ steps.select.outputs.projects }}
       any: ${{ steps.select.outputs.any }}
@@ -95,7 +95,7 @@ jobs:
   build:
     needs: discover
     if: needs.discover.outputs.any == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       id-token: write   # keyless cosign signing via GitHub OIDC
