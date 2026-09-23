@@ -3,7 +3,7 @@
 # Base images as dependencies
 export OS_UBUNTU="ubuntu:noble-20260610"
 export OS_ALPINE="alpine:3.24"
-export OS_DEBIAN="debian:bookworm-20250203-slim"
+export OS_DEBIAN="debian:bookworm-20260918-slim"
 export APP_ANTORA="antora/antora:3.1.15"
 export LANG_JDK_11="quay.io/labmonkeys/openjdk:jdk-11.0.24.b186"
 export LANG_JRE_17="quay.io/labmonkeys/openjdk:jre-17.0.12.b187"
