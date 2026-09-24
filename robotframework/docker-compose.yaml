@@ -2,7 +2,7 @@
 version: '3'
 services:
   jira-exporter:
-    image: quay.io/labmonkeys/jira-exporter:1.1.0.b1039
+    image: quay.io/labmonkeys/jira-exporter:1.1.0.b1469
     container_name: jira-exporter
     environment:
       JIRA_URL: https://issues.opennms.org
