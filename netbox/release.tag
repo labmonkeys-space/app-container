@@ -1,1 +1,1 @@
-netbox:4.6.7
+netbox:4.7.1
