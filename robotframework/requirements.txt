@@ -35,7 +35,7 @@ PyYAML==6.0.3
 requests==2.34.2
 robotframework==7.5
 robotframework-assertion-engine==5.0.1
-robotframework-browser==20.0.0
+robotframework-browser==20.5.0
 robotframework-databaselibrary==2.5.0
 robotframework-datadriver==1.11.2
 robotframework-datetime-tz==1.0.6
