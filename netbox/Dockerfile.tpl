@@ -13,7 +13,8 @@
 FROM "${BASE_IMAGE}" AS build
 
 RUN /usr/local/bin/uv pip install --no-cache --python /opt/netbox/venv/bin/python \
-      "netbox-opennms-plugin==${PLUGIN_VERSION}"
+      "netbox-opennms-plugin==${PLUGIN_VERSION}" \
+      "netbox-plugin-prometheus-sd==${PROMETHEUS_PLUGIN_VERSION}"
 
 ###
 # Runtime image: same NetBox base with the plugin-populated virtualenv copied in.
