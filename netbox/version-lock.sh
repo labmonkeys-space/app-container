@@ -14,7 +14,7 @@ export DATE
 
 # NetBox runtime image. Pinned to a concrete upstream release (never :latest);
 # tracked by Renovate via a customManager in ../renovate.json.
-export BASE_IMAGE="netboxcommunity/netbox:v4.7.1"
+export BASE_IMAGE="netboxcommunity/netbox:v4.7.2"
 
 # netbox-opennms-plugin, pinned to a PyPI release. Installed into the NetBox
 # virtualenv at build time; tracked by Renovate (pypi).
