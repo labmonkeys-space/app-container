@@ -11,7 +11,7 @@ export VCS_REVISION
 export DATE
 # fd.io publishes vpp packages only for Ubuntu noble and jammy, so vpp
 # cannot follow OS_UBUNTU to 26.04 (resolute) yet. Renovate tracks this pin.
-export BASE_IMAGE="ubuntu:noble-20260911"
+export BASE_IMAGE="ubuntu:noble-20260917"
 export VPP_VERSION="24.10-release"
 
 export PLATFORMS="linux/amd64,linux/arm64"
