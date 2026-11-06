@@ -8,7 +8,7 @@ FROM "${BASE_IMAGE}"
 # Karaf environment variables
 ENV KARAF_HOME="${KARAF_HOME}"
 
-ADD https://archive.apache.org/dist/karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz /tmp/karaf.tar.gz
+ADD https://repo1.maven.org/maven2/org/apache/karaf/apache-karaf/${KARAF_VERSION}/apache-karaf-${KARAF_VERSION}.tar.gz /tmp/karaf.tar.gz
 
 RUN apt-get update && apt-get install -y --no-install-recommends tini && \
     mkdir -p "${KARAF_HOME}" && \
