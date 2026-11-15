@@ -1,1 +1,1 @@
-robotframework:6.0.2
+robotframework:7.5.1
