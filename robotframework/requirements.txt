@@ -12,8 +12,8 @@ docutils==0.23
 exceptiongroup==1.3.1
 Faker==40.54.0
 future==1.0.0
-grpcio==1.84.0
-grpcio-tools==1.84.0
+grpcio==1.85.0
+grpcio-tools==1.85.0
 h11==0.16.0
 idna==3.20
 iniconfig==2.3.1
@@ -35,7 +35,7 @@ PyYAML==6.0.3
 requests==2.34.2
 robotframework==7.5.1
 robotframework-assertion-engine==5.0.1
-robotframework-browser==20.6.0
+robotframework-browser==21.0.0
 robotframework-databaselibrary==2.5.0
 robotframework-datadriver==1.11.2
 robotframework-datetime-tz==1.0.6
