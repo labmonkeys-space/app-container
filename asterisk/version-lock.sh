@@ -15,11 +15,11 @@ export DATE
 # bookworm.
 export BASE_IMAGE_BUILD="debian:trixie-20261123-slim"
 # Distroless runtime on the same Debian release. It has rolling tags only, so
-# this is not a fixed version yet. A digest pin follows together with a
-# Renovate rule that can track one.
-export BASE_IMAGE="gcr.io/distroless/cc-debian13:nonroot"
+# the digest is the pin. Renovate moves it when the tag does.
+export BASE_IMAGE="gcr.io/distroless/cc-debian13:nonroot@sha256:29ee70762214fe8190cea04ef1c0a84a8365879e047ce8f911ae5a5ab2355fa2"
 # Release and SHA-256 of asterisk-<version>.tar.gz on its GitHub release page.
-# Change both together. The build stops when they do not match.
+# Renovate updates both lines together and needs them adjacent. The build
+# stops when they do not match.
 export ASTERISK_VERSION="24.0.0"
 export ASTERISK_SHA256="ece42a75bc965180007c56b03f2fd1dc8484eb84fc4cddc090db0ee5d5da1af9"
 
