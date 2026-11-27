@@ -11,8 +11,13 @@ DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 export VCS_SOURCE
 export VCS_REVISION
 export DATE
-# Debian stable (trixie). OS_DEBIAN in base_images.sh is still on bookworm.
-export BASE_IMAGE="debian:trixie-20261123-slim"
+# Built on Debian stable (trixie). OS_DEBIAN in base_images.sh is still on
+# bookworm.
+export BASE_IMAGE_BUILD="debian:trixie-20261123-slim"
+# Distroless runtime on the same Debian release. It has rolling tags only, so
+# this is not a fixed version yet. A digest pin follows together with a
+# Renovate rule that can track one.
+export BASE_IMAGE="gcr.io/distroless/cc-debian13:nonroot"
 # Release and SHA-256 of asterisk-<version>.tar.gz on its GitHub release page.
 # Change both together. The build stops when they do not match.
 export ASTERISK_VERSION="24.0.0"
