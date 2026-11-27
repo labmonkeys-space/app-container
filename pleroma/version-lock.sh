@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright 2022 Ronny Trommer <ronny@no42.org>
+# SPDX-License-Identifier: MIT
 set -u -o pipefail
 
 source ../base_images.sh
@@ -11,7 +13,7 @@ export VCS_REVISION
 export DATE
 export BASE_IMAGE_BUILD="${LANG_ELIXIR}"
 export BASE_IMAGE="alpine:3.24.4"
-export PLEROMA_VERSION="v2.10.2"
+export PLEROMA_VERSION="v2.11.1"
 
 # arm64 disabled: the Elixir/Erlang `mix release` hangs indefinitely under
 # QEMU emulation on amd64 runners, exceeding the 6h CI ceiling.
