@@ -65,10 +65,10 @@
     },
     {
       "customType": "regex",
-      "description": "Per-project base image pinned as a shell export in <project>/version-lock.sh. ${VAR} references into base_images.sh are skipped.",
+      "description": "Per-project base image pinned as a shell export in <project>/version-lock.sh. ${VAR} references into base_images.sh are skipped. An optional @sha256 digest is tracked too, for images that only have rolling tags.",
       "managerFilePatterns": ["/(^|/)version-lock\\.sh$/"],
       "matchStrings": [
-        "export\\s+BASE_IMAGE(?:_BUILD)?=\"(?<depName>[^:\"@$]+):(?<currentValue>[^\"@]+)\""
+        "export\\s+BASE_IMAGE(?:_BUILD)?=\"(?<depName>[^:\"@$]+):(?<currentValue>[^\"@]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?\""
       ],
       "datasourceTemplate": "docker"
     },
@@ -81,6 +81,18 @@
       ],
       "datasourceTemplate": "pypi",
       "depNameTemplate": "netbox-opennms-plugin"
+    },
+    {
+      "customType": "regex",
+      "description": "Asterisk release in asterisk/version-lock.sh, pinned with the SHA-256 of its tarball, and the image tag in asterisk/release.tag. github-release-attachments updates the checksum together with the version. Strict semver skips the certified-* tags and release candidates.",
+      "managerFilePatterns": ["/^asterisk/version-lock\\.sh$/", "/^asterisk/release\\.tag$/"],
+      "matchStrings": [
+        "ASTERISK_VERSION=\"(?<currentValue>[^\"]+)\"\\s+export\\s+ASTERISK_SHA256=\"(?<currentDigest>[a-f0-9]{64})\"",
+        "^asterisk:(?<currentValue>[^\\s]+)"
+      ],
+      "datasourceTemplate": "github-release-attachments",
+      "depNameTemplate": "asterisk/asterisk",
+      "versioningTemplate": "semver"
     }
   ]
 }

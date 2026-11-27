@@ -132,6 +132,8 @@ It needs a `RENOVATE_TOKEN` repository secret (a personal access token with repo
 - Base images pinned in `base_images.sh` and in each project's `version-lock.sh` (custom regex managers).
 - GitHub Actions, pinned to immutable SHAs with the semver retained in a comment.
 - Python packages in `robotframework/requirements.txt`.
+- The Asterisk release in `asterisk/version-lock.sh` with its tarball checksum, and the tag in `asterisk/release.tag`.
+- The digest of a base image that is pinned as `tag@sha256:...`, for images with rolling tags only, such as the distroless runtime of `asterisk`.
 
 `hexpm/elixir` is excluded because Docker Hub cannot list its tags (about one million).
 Bump it by hand in `base_images.sh`.
