@@ -13,7 +13,7 @@ export VCS_REVISION
 export DATE
 # Pleroma 2.11 locks cowlib 2.21, which uses Erlang's `maybe` expression and
 # so needs OTP 27 to compile. LANG_ELIXIR in base_images.sh is still on OTP 26.
-export BASE_IMAGE_BUILD="elixir:1.17.3-otp-27-alpine"
+export BASE_IMAGE_BUILD="elixir:1.20.5-otp-27-alpine"
 export BASE_IMAGE="alpine:3.24.4"
 export PLEROMA_VERSION="v2.11.1"
 
